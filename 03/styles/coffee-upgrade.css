@@ -1,0 +1,85 @@
+html,body {
+    background-color: rgb(247,247,247);
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+td {
+    text-align: left;
+}
+.header {
+    background-color: rgb(3, 11, 79);
+    padding-top: 15px;
+    padding-bottom: 23px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.header img {
+    width: 35px;
+    height: 35px;
+}
+.header span {
+    color: white;
+    font-size: 18px;
+    margin-top: 8px;
+    margin-left: 5px;
+}
+.left {
+    width: 20%;
+    background-color: rgb(247,247,247);
+    float: left;
+}
+.left div {
+    width: 100%;
+    border-bottom: 1px solid  black;
+}
+.left div > a {
+    display: inline-block;
+    padding: 8px;
+    color: black;
+    text-decoration: none;
+}
+.left div > a:hover {
+    color:rgb(243, 43, 43) ;
+    text-decoration: underline;
+}
+.left:last-child {
+    border-bottom-width: 0;
+}
+.right {
+    width: 80%;
+    background-color: white;
+    float: left;
+    text-align: center
+}
+
+.price:before {
+    content: "￥";
+}
+.content {
+    text-align: left;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+.content p {
+    text-indent: 2em
+}
+.content p:first-letter {
+    font-size: 32px;
+}
+.foot {
+    background-color: rgb(3, 11, 79);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    text-align: center;
+    float: left;
+    color: #fff;
+}
