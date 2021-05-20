@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework</title>
+</head>
+
+<body>
+    <div style="width: 98%; height: 400px;border: 1px solid rgb(237,237,237);border-radius: 3px; margin: 0 auto;"
+        id='wrapper'>
+        <div id="list" style="width: 100%; position: relative;">
+            <span style="display: block;position: absolute; top: 30px; left: 30px;">小哥哥加油</span>
+        </div>
+    </div>
+    <div style="display: flex;flex-direction: row;justify-content: center;margin-top: 10px;margin-bottom: 10px;">
+        <input type="text" id="text" style="width: 450px;font-size: 15px;padding:5px;border:1px solid rgb(237,237,237)">
+    </div>
+    <div style="margin: 0 auto;text-align: center;">
+        <button style="width: 150px; padding-top: 5px;padding-bottom: 5px;" id="add">发射</button>
+        <button style="width: 150px; padding-top: 5px;padding-bottom: 5px;" id="clear">清屏</button>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>    
+        $(document).ready(function () {
+            $('#add').click(function () {
+                var textValue = $('#text').val()
+                var MaxWidth = $('#wrapper').innerWidth()
+                var MaxHeight = $('#wrapper').innerHeight()
+                if (textValue.length <= 0) {
+                    alert('请输入弹幕')
+                } else {
+                    var top = Math.floor(Math.random() * (MaxHeight-20 - 10)) +10
+                    var left = Math.floor(Math.random() * (MaxWidth-(16*textValue.length) - 10)) +10
+                    var color1 = Math.floor(Math.random() * (250))
+                    var color2 = Math.floor(Math.random() * (250))
+                    var color3 = Math.floor(Math.random() * (250))
+                    $('#list').append(`<span style="display:block;position: absolute; top: ${top}px; left: ${left}px;color:rgb(${color1},${color2},${color3}"> ${textValue} </span>`)
+                    $('#text').val('')
+                }
+            })
+            $('#clear').click(function(){
+                $('#list span').remove()
+            })
+        })
+    </script>
+</body>
+
+</html>
