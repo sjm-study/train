@@ -1,0 +1,131 @@
+html,body {
+    padding:0;
+    margin: 0;
+    width: 100%;
+}
+.header {
+    background-color: rgb(255,75,78);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.header>div {
+    display: flex;
+    align-items: center;
+    width: 760px;
+    margin: 0 auto;
+}
+/* .header :last-child {
+    margin-right: 100px;
+ }
+ .header :first-child {
+     margin-left: 100px;
+ } */
+.header div> span {
+    color: white;
+    
+}
+.movelist {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.moveitem {
+    width: 180px;
+    padding: 5px;
+    background-color: rgb(240,240,240);
+    margin: 5px;
+}
+.moveitem img {
+    width: 100%;
+    height: 250px;
+}
+.moveitem span {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+}
+.foot {
+    background-color: rgb(129, 0, 20);
+    padding: 40px;
+    margin-top: 30px;
+}
+.foot-2{
+    width: 840px;
+}
+.header-right-1 {
+    display: block;
+}
+.header-right-2 {
+    display: none;
+}
+
+@media screen and (max-width: 960px) {
+    .foot-2{
+        width: 100%;
+        
+    }
+}
+
+@media screen and (max-width:960px) and (min-width:720px) {
+    .moveitem {
+        width: 160px;
+    }
+    .moveitem img {
+        height: 250px;
+    }
+    .header>div {
+        width: 680px;
+    }
+}
+@media screen and (max-width:720px) and (min-width:540px) {
+    .moveitem {
+        width: 250px;
+    }
+    .moveitem img {
+        height: 280px;
+    }
+    .moveitem span {
+        font-size: 16px;
+    }
+    .header>div {
+        width: 520px;
+    }
+}
+@media screen and (max-width:540px) {
+    .moveitem {
+        width: 43%;
+    }
+    .moveitem img {
+        height: 230px;
+    }
+    .movelist {
+        width: '100%';
+    }
+    .header-right-1 {
+        display: none;
+    }
+    .header-right-2 {
+        display: block;
+    }
+    .header-left {
+        margin-left: 10px;
+    }
+    .header-left img {
+        width: 25px;
+        height: 25px;
+    }
+    .header-left span {
+        font-size: 14px;
+    }
+}

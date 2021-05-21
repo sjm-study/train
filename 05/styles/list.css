@@ -57,3 +57,16 @@ a {
 .describe {
     font-size: 13px;
 }
+.pager {
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 12px;
+    margin-left: 5px;
+    background-color: white;
+}
+.active-pager {
+    background-color: black;
+}
+.active-pager a {
+    color: #fff;
+}

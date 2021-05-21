@@ -27,9 +27,9 @@
 
     <!-- menu -->
     <div class="menu">
-        <a href="" style="background-color: rgb(204,0,0);"><span class="menuItem" >首页</span></a>
-        <a href=""><span class="menuItem">新闻</span></a>
-        <a href=""><span class="menuItem">关于我们</span></a>
+        <a href="#" style="background-color: rgb(204,0,0);"><span class="menuItem" >首页</span></a>
+        <a href="./list.html"><span class="menuItem">新闻</span></a>
+        <a href="./aboutus.html"><span class="menuItem">关于我们</span></a>
     </div>
 
     <!-- content -->
@@ -135,11 +135,11 @@
                     console.log(12)
 
                     $('#newlist').append(`
-                    <div class="newItem">
+                    <a class="newItem" href='./item.html?id=${res.data[i].id}'>
                     <img src="${res.data[i].imgUrl}"
                         alt="">
                     <span>${res.data[i].name}</span>
-                </div>
+                </a>
                     `)
                 }
 

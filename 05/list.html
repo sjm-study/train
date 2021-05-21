@@ -12,9 +12,9 @@
 <body>
     <!-- menu -->
     <div class="menu">
-        <a href=""><span class="menuItem">首页</span></a>
-        <a href="" style="background-color: rgb(204,0,0);"><span class="menuItem">新闻</span></a>
-        <a href=""><span class="menuItem">关于我们</span></a>
+        <a href="./index.html"><span class="menuItem">首页</span></a>
+        <a href="./list.html" style="background-color: rgb(204,0,0);"><span class="menuItem">新闻</span></a>
+        <a href="./aboutus.html"><span class="menuItem">关于我们</span></a>
     </div>
 
 
@@ -29,16 +29,7 @@
         </div>
 
         <!-- 分页器 -->
-        <div style="display: flex;flex-direction: row;justify-content: center;">
-            <div style="border: 1px solid black;padding: 5px;font-size: 12px;margin-left: 5px;background-color: black;">
-                <a href="" style="color: #fff;">1</a>
-            </div>
-            <div style="border: 1px solid black;color: #000;padding: 5px;font-size: 12px;margin-left: 5px;">
-                <a href="">2</a>
-            </div>
-            <div style="border: 1px solid black;color: #000;padding: 5px;font-size: 12px;margin-left: 5px;">
-                <a href="">3</a>
-            </div>
+        <div style="display: flex;flex-direction: row;justify-content: center;" id='pager'>
         </div>
     </div>
 
@@ -68,25 +59,60 @@
 
     <script>
         $(document).ready(function () {
-            
+            var dataTotal = []
+            var results = []
+            var pagerIndex = 0
             axios.get('http://mock-api.com/VnZA2Lgw.mock/list').then(res => {
-                var data = [...res.data,...res.data,...res.data]
-                console.log(data.length)
-                for (let i = 0; i < res.data.length; i++) {
+                var dataTotal = [...res.data, ...res.data, ...res.data]
+                for (let j = 0; j < dataTotal.length; j += 6) {
+                    results.push(dataTotal.slice(j, j + 6))
+                }
+                console.log(results)
+                for (let i = 0; i < results[0].length; i++) {
                     $('#newlist').append(`
-                    <div class="newItem">
-                        <img src="${res.data[i].imgUrl}" alt="">
+                    <a class="newItem" href='./item.html?id=${results[0][i].id}' >
+                        <img src="${results[0][i].imgUrl}" alt="">
                         <div style="width: 300px; margin-left: 10px;">
-                            <span class="title">${res.data[i].name}</span>
-                            <span class="time">${res.data[i].dateTime}</span>
-                            <span class="describe">${res.data[i].describe}</span>
+                            <span class="title">${results[0][i].name}</span>
+                            <span class="time">${results[0][i].dateTime}</span>
+                            <span class="describe">${results[0][i].describe}</span>
                         </div>
+                    </a>
+                    `)
+                }
+                for (let z = 0; z < results.length; z++) {
+                    $('#pager').append(`
+                    <div class="pager ${z===0? 'active-pager': ''}">
+                        <a href="" onclick="return false">${z+1}</a>
                     </div>
                     `)
 
                 }
             })
-            
+
+            // 跳转新闻详情页
+            // $(document).on('click', 'div#newlist a' , function() {
+            //     window.location.href(`./item.html?id=${$(this).attr('key')}`)
+            // })
+
+            // 点击分页器
+            $(document).on('click','div#pager div',function(){
+                pagerIndex = $(this).index()
+                $('div#pager div').eq(pagerIndex).addClass('active-pager').siblings().removeClass('active-pager')
+                $('div#newlist .newItem').remove()
+                for (let i = 0; i < results[pagerIndex].length; i++) {
+                    $('#newlist').append(`
+                    <a class="newItem" href='./item.html?id=${results[pagerIndex][i].id}' >
+                        <img src="${results[pagerIndex][i].imgUrl}" alt="">
+                        <div style="width: 300px; margin-left: 10px;">
+                            <span class="title">${results[pagerIndex][i].name}</span>
+                            <span class="time">${results[pagerIndex][i].dateTime}</span>
+                            <span class="describe">${results[pagerIndex][i].describe}</span>
+                        </div>
+                    </a>
+                    `)
+                }
+            })
         })
     </script>
 </body>
