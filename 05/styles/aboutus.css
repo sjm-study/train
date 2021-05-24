@@ -11,31 +11,27 @@ img {
     height: 300px;
 }
 .menu {
-    background-color: rgb(1,32,79);
-    width: 100%;
+    width: 100%; 
+    background-color: rgb(241,241,241);
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    padding: 10px 0;
     position: fixed;
-    top:0
+    top: 0;
+    z-index: 999999;
 }
-.menuItem {
-    padding: 10px;
-    color: white;
-    padding-top: 0px;
+.menu div a {
+    color: black;
+    display: block;
+    margin: 0 10px 0 10px;
 }
-.menu a:hover {
-    background-color: rgb(204,0,0);
-}
-.menu a {
-    display: inline-block;
-    padding: 10px;
-    /* margin-top: 20px; */
+.menu div a:hover {
+    color: #eb1700;
 }
 .foot {
     /* width: 100%; */
-    background-color: rgb(1,32,79);
+    background-color: rgb(215, 215, 215);
     padding: 15px;
     margin-top: 20px;
 }
