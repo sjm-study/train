@@ -2,16 +2,20 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
 }
+
 a {
     text-decoration: none;
 }
+
 ul {
     font-size: 35px;
     color: rgb(6, 241, 241);
 }
+
 .bannner {
-    width: auto;
+    width: 100%;
     height: 90%;
     position: relative;
     margin-top: 50px;
@@ -23,19 +27,24 @@ ul {
     display: block;
     position: absolute;
 }
+
 #list li:hover {
     color: rgb(241, 178, 178);
 }
+
 #list div {
     margin-left: 10px;
     background-color: white;
 }
 
-.active {color: white}
+.active {
+    color: white
+}
 
 .service {
     background-color: rgb(215, 215, 215);
-    width: 1200px;
+    max-width: 1200px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -44,53 +53,67 @@ ul {
     padding-bottom: 25px;
     margin: 0 auto;
 }
+
 .serviceItem {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
+
 .serviceItem img {
     width: 50px;
     height: 45px;
     margin-bottom: 8px;
 }
+
 .serviceItem span {
     color: #515151;
     font-size: 14px;
     font-weight: bold;
 }
-.content{
+
+.content {
     text-indent: 2em;
     display: block;
     padding: 10px;
     width: 80%;
     margin: 0 auto;
 }
+
 .item img {
-    width: 580px;
+    width: 50%;
     height: 450px;
 }
+
 .item {
     margin-top: 10px;
 }
+
 .newItem {
     margin-right: 25px;
+}
+.item-img {
+    width: 100%;
+    height: 350px;
+    background-image: url('../assents//server.jpeg');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .newItem img {
     width: 280px;
     height: 200px;
     display: block;
-    
 }
+
 .newItem span {
     font-size: 14px;
     display: block;
     width: 200px;
 }
+
 .menu {
-    width: 100%; 
-    background-color: rgb(241,241,241);
+    width: 100%;
+    background-color: rgb(241, 241, 241);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -99,11 +122,13 @@ ul {
     top: 0;
     z-index: 999999;
 }
+
 .menu div a {
     color: black;
     display: block;
     margin: 0 10px 0 10px;
 }
+
 .menu div a:hover {
     color: #eb1700;
 }
@@ -114,4 +139,3 @@ ul {
     padding: 15px;
     margin-top: 10px;
 }
-

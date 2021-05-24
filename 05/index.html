@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="./styles/index.css">
     <title>Index</title>
@@ -13,11 +14,11 @@
 <body>
     <!-- menu -->
     <div class="menu">
-        <div style="display: flex;align-items: center; margin-left: 50px;" id="logo" >
+        <div style="display: flex;align-items: center; margin-left: 50px;" id="logo">
             <img src="./assents/logo.png" alt="" style="width: 30px;height: 30px;" />
             <span>镇魂街</span>
         </div>
-        <div style="display: flex;align-items: center; margin-right: 50px;" >
+        <div style="display: flex;align-items: center; margin-right: 50px;">
             <a href="./index.html">首页</a>
             <a href="./list.html">新闻</a>
             <a href="./aboutus.html">关于我们</a>
@@ -25,14 +26,11 @@
     </div>
     <!-- bannner -->
     <div class="bannner" id='bannner'>
-        <img src="./assents/banner1.jfif"
-            alt="">
-        <img src="./assents/banner2.jfif"
-            alt="">
-        <img src="./assents/banner3.jfif"
-            alt="">
+        <img src="./assents/banner1.jfif" alt="">
+        <img src="./assents/banner2.jfif" alt="">
+        <img src="./assents/banner3.jfif" alt="">
     </div>
-    <ul id="list" style="position: absolute;top: 80%;left: 48%;z-index: 9999;">
+    <ul id="list" style="position: absolute;top: 85%;left: 48%;z-index: 9999;">
         <li style="float: left;"></li>
         <li style="float: left;margin-left: 25px;"> </li>
         <li style="float: left;margin-left: 25px;"> </li>
@@ -61,10 +59,9 @@
 
     <!-- content -->
     <p style="text-align: center;font-weight: bold;font-size: 20px; margin-top: 50px;">团队介绍</p>
-    <div style="width: 1200px;margin: 0 auto;">
-        <div style="display: flex; " class="item">
-            <img src="./assents/server.jpeg"
-                alt="">
+    <div style="max-width: 1200px;margin: 0 auto;width: 100%;">
+        <div style="display: flex; width: 100%; " class="item">
+            <div class="item-img"></div>
             <div style="width: 100%; display: flex;flex-direction: column;justify-content: space-between;">
                 <div>
                     <p style="font-size: 18px;font-weight: bold;text-align: center;margin-top: 0;">曹焱兵</p>
@@ -73,9 +70,10 @@
                         目前为了拯救红莲，与孙斩天一同杀入王国组织大本营塔塔鲁斯。
                     </span>
                 </div>
-                <div style="margin-bottom: 25px;"  >
+                <div style="margin-bottom: 25px;">
                     <div style="width: 200px;height: 2px;background-color: rgb(200,200,200); margin: 20px auto;"></div>
-                    <span style="width: 80%;margin: 0 auto;display: block;" >绝招: <span style="font-weight: bold;">大焱裂空锤、阎王炮、无相火皇</span></span>
+                    <span style="width: 80%;margin: 0 auto;display: block;">绝招: <span
+                            style="font-weight: bold;">大焱裂空锤、阎王炮、无相火皇</span></span>
                 </div>
             </div>
         </div>
@@ -88,30 +86,32 @@
                         得到了鬼符三通送的妖果兽和冥王破军印，因为自己的守护灵李轩辕意外毁掉了灵槐，所以不得不跟曹焱兵踏上了使灵槐重生的道路。
                     </span>
                 </div>
-                <div style="margin-bottom: 25px;"  >
+                <div style="margin-bottom: 25px;">
                     <div style="width: 200px;height: 2px;background-color: rgb(200,200,200); margin: 20px auto;"></div>
-                    <span style="width: 80%;margin: 0 auto;display: block;" >绝招: <span style="font-weight: bold;">冥王破军印、断罪邪铃·四象擒灵光</span></span>
+                    <span style="width: 80%;margin: 0 auto;display: block;">绝招: <span
+                            style="font-weight: bold;">冥王破军印、断罪邪铃·四象擒灵光</span></span>
                 </div>
             </div>
-            <img src="./assents/server2.jpeg"
-                alt="">
+            <div class="item-img" style="background-image: url('./assents/server2.jpeg');"></div>
+            <!-- <img src="./assents/server2.jpeg" alt=""> -->
         </div>
 
-        <div style="display: flex; " class="item">
-            <img src="./assents/server3.jpeg"
-                alt="">
+        <div style="display: flex; width: 100%; " class="item">
+            <!-- <img src="./assents/sever5.jpg" alt=""> -->
+            <div class="item-img" style="background-image: url('./assents/sever5.jpg');"></div>
             <div style="width: 100%; display: flex;flex-direction: column;justify-content: space-between;">
                 <div>
                     <p style="font-size: 18px;font-weight: bold;text-align: center;margin-top: 0;">北落师门</p>
                     <span class="content">原为雷隼特种部队副队长、灵甲军的头领、羽林街的前任镇魂将，菩提街的前任镇魂。原本的名字为白师门，为了不让女儿想起过去而将名字改为北落师门。
                     </span>
                 </div>
-                <div style="margin-bottom: 25px;"  >
+                <div style="margin-bottom: 25px;">
                     <div style="width: 200px;height: 2px;background-color: rgb(200,200,200); margin: 20px auto;"></div>
-                    <span style="width: 80%;margin: 0 auto;display: block;" >绝招: <span style="font-weight: bold;">石龙破九天</span></span>
+                    <span style="width: 80%;margin: 0 auto;display: block;">绝招: <span
+                            style="font-weight: bold;">石龙破九天</span></span>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
@@ -119,23 +119,25 @@
     <p style="text-align: center;font-weight: bold;font-size: 20px; margin-top: 50px;">新闻动态</p>
     <div style="margin-bottom: 20px; width: 1200px; margin: 0 auto;">
         <div style="display: flex;flex-direction: row;" id="newlist">
-           
+
         </div>
     </div>
 
     <!-- foot -->
     <div class="foot">
         <div style="width: 1200px;margin: 0 auto;display: flex;justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/maps.png" alt="" style="width: 30px;height: 30px;" ><br>
-                <span style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
+            <div style="display: flex; align-items: center;">
+                <img src="./assents/maps.png" alt="" style="width: 30px;height: 30px;"><br>
+                <span
+                    style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
             </div>
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/email.png" alt="" style="width: 30px;height: 30px;" ><br>
-                <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
+            <div style="display: flex; align-items: center;">
+                <img src="./assents/email.png" alt="" style="width: 30px;height: 30px;"><br>
+                <span
+                    style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
             </div>
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/kefu.png" alt="" style="width: 30px;height: 30px;" ><br>
+            <div style="display: flex; align-items: center;">
+                <img src="./assents/kefu.png" alt="" style="width: 30px;height: 30px;"><br>
                 <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">400-400-400</span>
             </div>
             <div>
@@ -153,8 +155,8 @@
     <script>
         $(document).ready(function () {
 
-            $('#logo').click(function(){
-                window.location.href='./index.html'
+            $('#logo').click(function () {
+                window.location.href = './index.html'
             })
 
             $('#list li').first().addClass('active')
