@@ -20,6 +20,7 @@
 
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="./js/lazysizes.min.js" async=""></script>
     <title>Document</title>
 </head>
 
@@ -117,7 +118,7 @@
                     for (let i = 0; i < data.length; i++) {
                         $('#newlist').append(`
                     <a class="newItem col-lg-6 col-md-6" href='./item.html?id=${data[i].id}' >
-                        <img src="${data[i].imgUrl}" alt="imgul">
+                        <img data-src="${data[i].imgUrl}" alt="imgul" class="lazyload">
                         <div style=" margin-left: 10px;">
                             <span class="title">${data[i].name}</span>
                             <span class="time">${data[i].dateTime}</span>
