@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="./styles/list.css">
     <title>Document</title>
 </head>
@@ -13,18 +14,18 @@
 <body>
     <!-- menu -->
     <div class="menu">
-        <div style="display: flex;align-items: center; margin-left: 50px;" id="logo" >
+        <div style="display: flex;align-items: center; margin-left: 50px;" id="logo">
             <img src="./assents/logo.png" alt="" style="width: 30px;height: 30px;" />
             <span>镇魂街</span>
         </div>
-        <div style="display: flex;align-items: center; margin-right: 60px;" >
+        <div style="display: flex;align-items: center; margin-right: 60px;">
             <a href="./index.html">首页</a>
             <a href="./list.html">新闻</a>
             <a href="./aboutus.html">关于我们</a>
         </div>
     </div>
 
-    <div style="max-width: 1200px; width:100%;margin: 0 auto; padding-top: 60px;height: calc(100% - 254px);">
+    <div style="max-width: 1200px; width:100%;margin: 0 auto; padding-top: 60px;min-height: calc(100% - 210px);">
         <p style="color: #2f63ba; font-weight: bold;margin-left: 20px;margin-bottom: 5px;">新闻动态</p>
         <div style="border-bottom: 1px solid rgb(200,200,200); margin-top: 5px;">
             <div style="width: 124px;height: 2px;background-color:#2f63ba;"></div>
@@ -55,17 +56,20 @@
 
     <!-- foot -->
     <div class="foot">
-        <div style="max-width: 1200px;width:100%;margin: 0 auto;display: flex;justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/maps.png" alt="" style="width: 30px;height: 30px;" ><br>
-                <span style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
+        <div
+            style="max-width: 1200px;width:100%;margin: 0 auto;display: flex;justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center;">
+                <img src="./assents/maps.png" alt="" style="width: 30px;height: 30px;"><br>
+                <span
+                    style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
             </div>
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/email.png" alt="" style="width: 30px;height: 30px;" ><br>
-                <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
+            <div style="display: flex; align-items: center;">
+                <img src="./assents/email.png" alt="" style="width: 30px;height: 30px;"><br>
+                <span
+                    style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
             </div>
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/kefu.png" alt="" style="width: 30px;height: 30px;" ><br>
+            <div style="display: flex; align-items: center;">
+                <img src="./assents/kefu.png" alt="" style="width: 30px;height: 30px;"><br>
                 <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">400-400-400</span>
             </div>
             <div>
@@ -83,8 +87,8 @@
         $(document).ready(function () {
             var pagerIndex = 0
 
-            $('#logo').click(function(){
-                window.location.href='./index.html'
+            $('#logo').click(function () {
+                window.location.href = './index.html'
             })
 
             // 获取数据并渲染

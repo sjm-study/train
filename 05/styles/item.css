@@ -38,5 +38,7 @@ img {
 .content {
     text-indent: 2em;
     display: block;
-    line-height: 25px
+    line-height: 25px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
