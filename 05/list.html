@@ -5,73 +5,90 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="./styles/list.css">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Document</title>
 </head>
 
 <body>
     <!-- menu -->
     <div class="menu">
-        <a style="display: flex;align-items: center; margin-left: 50px;" href="./index.html" >
+        <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
             <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
-            <span style="color: black" >镇魂街</span>
+            <span style="color: black">镇魂街</span>
         </a>
-        <div style="display: flex;align-items: center; margin-right: 60px;">
+        <div style="display: flex;align-items: center;" class="menu-right">
             <a href="./index.html">首页</a>
             <a href="./list.html">新闻</a>
             <a href="./aboutus.html">关于我们</a>
         </div>
     </div>
 
-    <div style="max-width: 1200px; width:100%;margin: 0 auto; padding-top: 60px;min-height: calc(100% - 210px);">
-        <p style="color: #2f63ba; font-weight: bold;margin-left: 20px;margin-bottom: 5px;">新闻动态</p>
-        <div style="border-bottom: 1px solid rgb(200,200,200); margin-top: 5px;">
-            <div style="width: 124px;height: 2px;background-color:#2f63ba;"></div>
-        </div>
-        <div class="loadEffect" id="loading">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div style="display: flex;flex-direction: row; justify-content: space-between;flex-wrap: wrap;" id="newlist">
+    <div class="container-fluid height">
+
+        <div style="max-width: 1200px; width:100%;margin: 0 auto; padding-top: 60px;">
+            <p style="color: #2f63ba; font-weight: bold;margin-left: 20px;margin-bottom: 5px;">新闻动态</p>
+            <div style="border-bottom: 1px solid rgb(200,200,200); margin-top: 5px;">
+                <div style="width: 124px;height: 2px;background-color:#2f63ba;"></div>
+            </div>
+            <div class="loadEffect" id="loading">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div style="display: flex;flex-direction: row; justify-content: space-between;flex-wrap: wrap;" id="newlist"
+                class="row">
 
 
+            </div>
+
+            <!-- 分页器 -->
+            <div style="display: flex;flex-direction: row;justify-content: center;margin-top: 10px;" id='pager'>
+            </div>
         </div>
 
-        <!-- 分页器 -->
-        <div style="display: flex;flex-direction: row;justify-content: center;margin-top: 10px;" id='pager'>
-        </div>
     </div>
-
-
 
 
 
     <!-- foot -->
     <div class="foot">
-        <div
-            style="max-width: 1200px;width:100%;margin: 0 auto;display: flex;justify-content: space-around; align-items: center;">
-            <div style="display: flex; align-items: center;">
-                <img src="./assents/maps.png" alt="maps" style="width: 30px;height: 30px;"><br>
-                <span
-                    style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
+        <div style="margin: 0 auto;display: flex;justify-content: space-around; align-items: center;" class="row">
+            <div>
+                <div style="display: flex; align-items: center;">
+                    <img src="./assents/maps.png" alt="maps" style="width: 30px;height: 30px;"><br>
+                    <span
+                        style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <img src="./assents/email.png" alt="email" style="width: 30px;height: 30px;"><br>
+                    <span
+                        style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <img src="./assents/kefu.png" alt="kefu" style="width: 30px;height: 30px;"><br>
+                    <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">400-400-400</span>
+                </div>
             </div>
-            <div style="display: flex; align-items: center;">
-                <img src="./assents/email.png" alt="email" style="width: 30px;height: 30px;"><br>
-                <span
-                    style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <img src="./assents/kefu.png" alt="kefu" style="width: 30px;height: 30px;"><br>
-                <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">400-400-400</span>
-            </div>
+
             <div>
                 <img src="https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/footer/newErweima_9fa03e0.png"
                     alt="code" style="width: 150px;height: 150px;">
@@ -85,7 +102,8 @@
 
     <script>
         $(document).ready(function () {
-            var pagerIndex = 0
+            
+            var pagerIndex = localStorage.page ? JSON.parse(localStorage.page) : 0
 
             $('#logo').click(function () {
                 window.location.href = './index.html'
@@ -95,12 +113,12 @@
             function getData(page) {
                 $('#loading').css('display', 'block')
                 axios.get(`http://mock-api.com/VnZA2Lgw.mock/list?page=${page}`).then(res => {
-                    var data = res.data
+                    var data = res.data.data
                     for (let i = 0; i < data.length; i++) {
                         $('#newlist').append(`
-                    <a class="newItem" href='./item.html?id=${data[i].id}' >
+                    <a class="newItem col-lg-6 col-md-6" href='./item.html?id=${data[i].id}' >
                         <img src="${data[i].imgUrl}" alt="imgul">
-                        <div style="width: 300px; margin-left: 10px;">
+                        <div style=" margin-left: 10px;">
                             <span class="title">${data[i].name}</span>
                             <span class="time">${data[i].dateTime}</span>
                             <span class="describe">${data[i].describe}</span>
@@ -108,27 +126,29 @@
                     </a>
                     `)
                     }
+                    for (let z = 0; z < res.data.total / 6; z++) {
+                        $('#pager').append(`
+                    <div class="pager ${z === pagerIndex ? 'active-pager' : ''}">
+                        <a href="" onclick="return false">${z + 1}</a>
+                    </div>
+                    `)
+
+                    }
                     $('#loading').css('display', 'none')
                 })
             }
 
             // 第一次获取
-            getData(1)
-            // 分页器渲染
-            for (let z = 0; z < 3; z++) {
-                $('#pager').append(`
-                    <div class="pager ${z === 0 ? 'active-pager' : ''}">
-                        <a href="" onclick="return false">${z + 1}</a>
-                    </div>
-                    `)
+            getData(pagerIndex+1)
 
-            }
 
             // 点击分页器
             $(document).on('click', 'div#pager div', function () {
                 pagerIndex = $(this).index()
+                localStorage.page = JSON.stringify(pagerIndex)
                 $('div#pager div').eq(pagerIndex).addClass('active-pager').siblings().removeClass('active-pager')
                 $('div#newlist .newItem').remove()
+                $('#pager .pager').remove()
                 getData(pagerIndex + 1)
             })
         })

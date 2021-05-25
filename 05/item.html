@@ -5,59 +5,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="./styles/item.css">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Item</title>
 </head>
 
 <body>
     <!-- menu -->
     <div class="menu">
-        <a style="display: flex;align-items: center; margin-left: 50px;" href="./index.html" >
+        <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
             <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
-            <span style="color: black" >镇魂街</span>
+            <span style="color: black">镇魂街</span>
         </a>
-        <div style="display: flex;align-items: center; margin-right: 60px;" >
+        <div style="display: flex;align-items: center;" class="menu-right">
             <a href="./index.html">首页</a>
             <a href="./list.html">新闻</a>
             <a href="./aboutus.html">关于我们</a>
         </div>
     </div>
-    <div style="min-height: calc(100% - 195px); padding-top: 26px;">
-        <div class="loadEffect" id="loading">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+
+    <div class="container-fluid height" style="padding-top: 50px;">
+        <div>
+            <div class="loadEffect" id="loading">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div id='title' style=" width: 100%;">
+
+            </div>
+            <div id='content' style="width: 100%;max-width: 1200px;margin: 0 auto;"></div>
+
+
         </div>
-        <div id='title' style=" width: 100%;">
-    
-        </div>
-        <div id='content' style="width: 100%;max-width: 1200px;margin: 0 auto;" ></div>
     </div>
-    
+
 
 
     <!-- foot -->
     <div class="foot">
-        <div style="margin: 0 auto;display: flex;justify-content: space-around; align-items: center;width: 100%;max-width: 1200px;">
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/maps.png" alt="maps" style="width: 30px;height: 30px;" ><br>
-                <span style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
+        <div style="margin: 0 auto;display: flex;justify-content: space-around; align-items: center;" class="row">
+            <div>
+                <div style="display: flex; align-items: center;">
+                    <img src="./assents/maps.png" alt="maps" style="width: 30px;height: 30px;"><br>
+                    <span
+                        style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <img src="./assents/email.png" alt="email" style="width: 30px;height: 30px;"><br>
+                    <span
+                        style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <img src="./assents/kefu.png" alt="kefu" style="width: 30px;height: 30px;"><br>
+                    <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">400-400-400</span>
+                </div>
             </div>
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/email.png" alt="email" style="width: 30px;height: 30px;" ><br>
-                <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
-            </div>
-            <div style="display: flex; align-items: center;" >
-                <img src="./assents/kefu.png" alt="kefu" style="width: 30px;height: 30px;" ><br>
-                <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">400-400-400</span>
-            </div>
+
             <div>
                 <img src="https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/footer/newErweima_9fa03e0.png"
                     alt="code" style="width: 150px;height: 150px;">
@@ -71,8 +93,8 @@
 
     <script>
         $(document).ready(function () {
-            $('#logo').click(function(){
-                window.location.href='./index.html'
+            $('#logo').click(function () {
+                window.location.href = './index.html'
             })
 
             console.log(window.location.href)
@@ -81,30 +103,28 @@
             axios.get(`http://mock-api.com/VnZA2Lgw.mock/item/${id}`).then(res => {
                 var p = res.data.content.split('<br>')
                 console.log(p)
-            $('#loading').css('display', 'none')
+                var results = ''
+                for (let i = 0; i < p.length; i++) {
+                    results = results +
+                        ` <span class='content'>${p[i]}
+                    </span><br>`
+                }
+                $('#loading').css('display', 'none')
                 $('#title').append(`
                 <div>
                     <div style="background-color: rgb(248,248,249);padding-bottom: 10px;">
                         <div style="text-align: center;">
-                            <p style="font-weight: bold;font-size: 24px;">${res.data.name}</p>
+                            <p class='title'>${res.data.name}</p>
                             <span style="color: #888;font-size: 13px;">发布时间: ${res.data.dateTime}</span>
                         </div>
                     </div>
                 </div>
-                <div style="margin-top: 15px; text-align: center;">
+                <div style="margin-top: 15px; text-align: center;" >
                         <img src="${res.data.imgUrl}"
-                            alt="imgul">
+                            alt="imgul" class="content-img">
+                        <div style="margin-left:10px" class='content-text' >${results}</div>
                     </div>
                 `)
-
-                for (let i = 0; i < p.length; i++) {
-                    $('#content').append(`
-                <div style="margin: 0 auto; margin-top: 15px;">
-                        <span class='content'>${p[i]}
-                        </span><br>
-                    </div>
-                `)
-                }
 
             })
         })
