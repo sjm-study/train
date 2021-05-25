@@ -44,10 +44,14 @@ a {
     width: 210px;
     height: 173px;
 }
+.title:hover {
+    color: #eb1700;
+}
 
 .title {
     color: rgb(92, 91, 91);
     font-size: 15px;
+    display: block;
 }
 .time {
     display: block;
