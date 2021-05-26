@@ -25,21 +25,10 @@
 </head>
 
 <body>
-    <!-- menu -->
-    <div class="menu">
-        <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
-            <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
-            <span style="color: black">镇魂街</span>
-        </a>
-        <div style="display: flex;align-items: center;" class="menu-right">
-            <a href="./index.html">首页</a>
-            <a href="./list.html">新闻</a>
-            <a href="./aboutus.html">关于我们</a>
-        </div>
-    </div>
+
     <!-- bannner -->
 
-    <div id="demo" class="carousel slide" data-ride="carousel" style="margin-top: 50px;">
+    <div id="demo" class="carousel slide" data-ride="carousel" style="margin-top: 0px;">
 
         <!-- 指示符 -->
         <ul class="carousel-indicators">
@@ -73,25 +62,62 @@
 
     <!-- body -->
     <div class="container-fluid" style="width: 100%; max-width: 1200px;">
+        <!-- menu -->
+        <div class="menu" id="menu">
+            <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
+                <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
+                <span style="color: black">镇魂街</span>
+            </a>
+            <div style="display: flex;align-items: center;" class="menu-right">
+                <a href="./index.html">首页</a>
+                <a href="./list.html">新闻</a>
+                <a href="./aboutus.html">关于我们</a>
+            </div>
+        </div>
+
         <p style="text-align: center;font-weight: bold;font-size: 20px; margin-top: 15px;">服务范围</p>
-        <div class="service row ">
-            <div class="serviceItem col-md-3 col-sm-6 col-xs-6 ">
+        <div class="service display-server1 ">
+            <div class="serviceItem  ">
                 <img src="./assents/home-line.png" alt="img">
                 <span>接受亡灵</span>
             </div>
-            <div class="serviceItem col-md-3 col-sm-6 col-xs-6">
+            <div class="serviceItem ">
                 <img src="./assents/users.png" alt="img">
                 <span>寄灵人花名册</span>
             </div>
-            <div class="serviceItem col-md-3 col-sm-6 col-xs-6">
+            <div class="serviceItem ">
                 <img src="./assents/ling.png" alt="img" style="width: 55px;height: 55px;">
                 <span>守护灵花名册</span>
             </div>
-            <div class="serviceItem col-md-3 col-sm-6 col-xs-6">
+            <div class="serviceItem">
                 <img src="./assents/pai.png" alt="img">
                 <span>排名</span>
             </div>
         </div>
+
+        <div class=" service display-server2">
+            <div class="service col-xs-6 " style="text-align: center;">
+                <div class="serviceItem  ">
+                    <img src="./assents/home-line.png" alt="img">
+                    <span>接受亡灵</span>
+                </div>
+                <div class="serviceItem " style="text-align: center;">
+                    <img src="./assents/users.png" alt="img">
+                    <span>寄灵人花名册</span>
+                </div>
+            </div>
+            <div class="service col-xs-6 " style="text-align: center;">
+                <div class="serviceItem ">
+                    <img src="./assents/ling.png" alt="img" style="width: 55px;height: 55px;">
+                    <span>守护灵花名册</span>
+                </div>
+                <div class="serviceItem">
+                    <img src="./assents/pai.png" alt="img">
+                    <span>排名</span>
+                </div>
+            </div>
+        </div>
+
 
         <!-- content -->
         <p style="text-align: center;font-weight: bold;font-size: 20px; margin-top: 50px;">团队介绍</p>
@@ -183,8 +209,8 @@
 
     <!-- foot -->
     <div class="foot">
-        <div style="margin: 0 auto;display: flex;justify-content: space-around; align-items: center;" class="row">
-            <div>
+        <div style="margin: 0 auto;display: flex;justify-content: space-between; align-items: center; width: 100%; max-width: 1200px;" class="row">
+            <div class="foot-left" >
                 <div style="display: flex; align-items: center;">
                     <img src="./assents/maps.png" alt="maps" style="width: 30px;height: 30px;"><br>
                     <span
@@ -201,7 +227,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="foot-left">
                 <img src="https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/footer/newErweima_9fa03e0.png"
                     alt="code" style="width: 150px;height: 150px;">
             </div>
@@ -216,7 +242,6 @@
 
     <script>
         $(document).ready(function () {
-
             $('#logo').click(function () {
                 window.location.href = './index.html'
             })
