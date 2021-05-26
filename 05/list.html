@@ -9,8 +9,9 @@
         content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="./styles/list.css">
-    <!-- 新 Bootstrap4 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
@@ -18,25 +19,30 @@
     <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
 
-    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
     <script src="./js/lazysizes.min.js" async=""></script>
     <title>Document</title>
 </head>
 
 <body>
     <!-- menu -->
-    <div class="menu">
-        <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
-            <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
-            <span style="color: black">镇魂街</span>
-        </a>
-        <div style="display: flex;align-items: center;" class="menu-right">
-            <a href="./index.html">首页</a>
-            <a href="./list.html">新闻</a>
-            <a href="./aboutus.html">关于我们</a>
+    <div style="width: 100%;background-color:rgb(241, 241, 241); position: fixed;top: 0;z-index: 9999;">
+        <div class="menu">
+            <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
+                <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
+                <span style="color: black">镇魂街</span>
+            </a>
+            <div style="display: flex;align-items: center;" class="menu-right">
+                <a href="./index.html">首页</a>
+                <a href="./list.html">新闻</a>
+                <a href="./aboutus.html">关于我们</a>
+            </div>
         </div>
     </div>
+
 
     <div class="container-fluid height">
 
@@ -64,6 +70,28 @@
             <!-- 分页器 -->
             <div style="display: flex;flex-direction: row;justify-content: center;margin-top: 10px;" id='pager'>
             </div>
+
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination" id='nav'>
+                    <!-- <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li> -->
+                    <!-- <li class="active"><a href="#">1</a></li>
+                    <li class="disabled"><a href="#">2</a></li>
+                    <li><a href="#" onclick="return false">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li> -->
+                    <!-- <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li> -->
+                </ul>
+            </nav>
+
         </div>
 
     </div>
@@ -72,39 +100,39 @@
 
     <!-- foot -->
     <div class="foot">
-        <div style="margin: 0 auto;display: flex;justify-content: space-around; align-items: center;" class="row">
-            <div class="foot-left"> 
+        <div style="margin: 0 auto;display: flex;justify-content: space-between; align-items: center; width: 100%; max-width: 1200px;"
+            class="row">
+            <div class="foot-left">
                 <div style="display: flex; align-items: center;">
-                    <img src="./assents/maps.png" alt="maps" style="width: 30px;height: 30px;"><br>
-                    <span
-                        style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
+                    <img src="./assents/maps.png" alt="maps" class="foot-img"><br>
+                    <span style="margin-left: 10px; color: rgb(68, 67, 67);"
+                        class="foot-text">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <img src="./assents/email.png" alt="email" style="width: 30px;height: 30px;"><br>
-                    <span
-                        style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
+                    <img src="./assents/email.png" alt="email" class="foot-img"><br>
+                    <span style="margin-left: 10px;color: rgb(105, 101, 101);"
+                        class="foot-text">wufengwangluo@expe.com</span>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <img src="./assents/kefu.png" alt="kefu" style="width: 30px;height: 30px;"><br>
-                    <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">400-400-400</span>
+                    <img src="./assents/kefu.png" alt="kefu" class="foot-img"><br>
+                    <span style="margin-left: 10px; color: rgb(105, 101, 101);" class="foot-text">400-400-400</span>
                 </div>
             </div>
 
             <div class="foot-left">
                 <img src="https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/footer/newErweima_9fa03e0.png"
-                    alt="code" style="width: 150px;height: 150px;">
+                    alt="code" class="foot-code">
             </div>
         </div>
     </div>
 
 
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            
-            var pagerIndex = localStorage.page ? JSON.parse(localStorage.page) : 0
+
+            var pagerIndex = localStorage.page ? JSON.parse(localStorage.page) : 1
 
             $('#logo').click(function () {
                 window.location.href = './index.html'
@@ -118,7 +146,9 @@
                     for (let i = 0; i < data.length; i++) {
                         $('#newlist').append(`
                     <a class="newItem col-lg-6 col-md-6" href='./item.html?id=${data[i].id}' >
-                        <img data-src="${data[i].imgUrl}" alt="imgul" class="lazyload">
+                        
+                            <img data-src="${data[i].imgUrl}" alt="imgul" class="lazyload">
+                        
                         <div style=" margin-left: 10px;">
                             <span class="title">${data[i].name}</span>
                             <span class="time">${data[i].dateTime}</span>
@@ -127,20 +157,39 @@
                     </a>
                     `)
                     }
-                    for (let z = 0; z < res.data.total / 6; z++) {
-                        $('#pager').append(`
-                    <div class="pager ${z === pagerIndex ? 'active-pager' : ''}">
-                        <a href="" onclick="return false">${z + 1}</a>
-                    </div>
-                    `)
+                    // for (let z = 0; z < res.data.total / 6; z++) {
+                    //     $('#pager').append(`
+                    // <div class="pager ${z === pagerIndex ? 'active-pager' : ''}">
+                    //     <a href="" onclick="return false">${z + 1}</a>
+                    // </div>
+                    // `)
 
+                    // }
+
+                    var navpage = `<li class="${pagerIndex=== 1? 'disabled': ' '}">
+                        <a href="#" aria-label="Previous" id='Previous' onclick="return false">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>`
+                    for (let z = 0; z < res.data.total / 6; z++) {
+                        navpage = navpage + `
+                        <li class="${z === pagerIndex-1 ? 'active' : ''} "><a href="#" onclick="return false">${z + 1}</a></li>
+                    `
                     }
+                    console.log(pagerIndex)
+                    navpage = navpage + `<li class="${pagerIndex=== res.data.total / 6? 'disabled': ' '}">
+                        <a href="#" aria-label="Next" id='Next' onclick="return false">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>`
+                    $('#nav').append(navpage)
+
                     $('#loading').css('display', 'none')
                 })
             }
 
             // 第一次获取
-            getData(pagerIndex+1)
+            getData(1)
 
 
             // 点击分页器
@@ -150,7 +199,7 @@
                 $('div#pager div').eq(pagerIndex).addClass('active-pager').siblings().removeClass('active-pager')
                 $('div#newlist .newItem').remove()
                 $('#pager .pager').remove()
-                getData(pagerIndex + 1)
+                getData(pagerIndex)
             })
         })
     </script>

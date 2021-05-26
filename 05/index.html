@@ -25,9 +25,21 @@
 </head>
 
 <body>
-
+    <!-- menu -->
+    <div style="width: 100%;background-color:rgb(241, 241, 241); position: fixed;top: 0;z-index: 9999;">
+        <div class="menu" id="menu">
+            <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
+                <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
+                <span style="color: black">镇魂街</span>
+            </a>
+            <div style="display: flex;align-items: center;" class="menu-right">
+                <a href="./index.html">首页</a>
+                <a href="./list.html">新闻</a>
+                <a href="./aboutus.html">关于我们</a>
+            </div>
+        </div>
+    </div>
     <!-- bannner -->
-
     <div id="demo" class="carousel slide" data-ride="carousel" style="margin-top: 0px;">
 
         <!-- 指示符 -->
@@ -60,20 +72,9 @@
 
     </div>
 
+
     <!-- body -->
     <div class="container-fluid" style="width: 100%; max-width: 1200px;">
-        <!-- menu -->
-        <div class="menu" id="menu">
-            <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
-                <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
-                <span style="color: black">镇魂街</span>
-            </a>
-            <div style="display: flex;align-items: center;" class="menu-right">
-                <a href="./index.html">首页</a>
-                <a href="./list.html">新闻</a>
-                <a href="./aboutus.html">关于我们</a>
-            </div>
-        </div>
 
         <p style="text-align: center;font-weight: bold;font-size: 20px; margin-top: 15px;">服务范围</p>
         <div class="service display-server1 ">
@@ -130,8 +131,7 @@
                     <div>
                         <p class="name">曹焱兵</p>
                         <span class="content">白天兼职外卖夜晚开始上班的（原）罗刹街镇魂将，镇魂街三个武神躯之一，被称为火将军。对弟弟小亮很严格，表面上装作漠不关心，其实心里是很关心小亮的。
-                            邂逅少女夏玲、打破王国组织的袭击后，开始了修复神树的冒险之旅。于路途中结识了北落师门、阎风吒等人为伴。
-                            目前为了拯救红莲，与孙斩天一同杀入王国组织大本营塔塔鲁斯。
+                            邂逅少女夏玲、打破王国组织的袭击后，开始了修复神树的冒险之旅。
                         </span>
                     </div>
                     <div style="margin-bottom: 25px;">
@@ -148,7 +148,7 @@
                 <div style="width: 100%; display: flex;flex-direction: column;justify-content: space-between;"
                     class="col-md-6">
                     <div>
-                        <p style="font-size: 18px;font-weight: bold;text-align: center;margin-top: 0;">夏铃</p>
+                        <p class="name">夏铃</p>
                         <span class="content">设计类大学大学三年级，建筑公司实习职员，18 岁，曾经得过空手道冠军。
                             得到了鬼符三通送的妖果兽和冥王破军印，因为自己的守护灵李轩辕意外毁掉了灵槐，所以不得不跟曹焱兵踏上了使灵槐重生的道路。
                         </span>
@@ -209,27 +209,28 @@
 
     <!-- foot -->
     <div class="foot">
-        <div style="margin: 0 auto;display: flex;justify-content: space-between; align-items: center; width: 100%; max-width: 1200px;" class="row">
-            <div class="foot-left" >
+        <div style="margin: 0 auto;display: flex;justify-content: space-between; align-items: center; width: 100%; max-width: 1200px;"
+            class="row">
+            <div class="foot-left">
                 <div style="display: flex; align-items: center;">
-                    <img src="./assents/maps.png" alt="maps" style="width: 30px;height: 30px;"><br>
-                    <span
-                        style="margin-left: 10px;font-size: 16px; color: rgb(68, 67, 67);">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
+                    <img src="./assents/maps.png" alt="maps" class="foot-img"><br>
+                    <span style="margin-left: 10px; color: rgb(68, 67, 67);"
+                        class="foot-text">福建福州市仓山区金山街道金山大道618-322特力林科技大厦307室</span>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <img src="./assents/email.png" alt="email" style="width: 30px;height: 30px;"><br>
-                    <span
-                        style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">wufengwangluo@expe.com</span>
+                    <img src="./assents/email.png" alt="email" class="foot-img"><br>
+                    <span style="margin-left: 10px;color: rgb(105, 101, 101);"
+                        class="foot-text">wufengwangluo@expe.com</span>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <img src="./assents/kefu.png" alt="kefu" style="width: 30px;height: 30px;"><br>
-                    <span style="margin-left: 10px;font-size: 16px; color: rgb(105, 101, 101);">400-400-400</span>
+                    <img src="./assents/kefu.png" alt="kefu" class="foot-img"><br>
+                    <span style="margin-left: 10px; color: rgb(105, 101, 101);" class="foot-text">400-400-400</span>
                 </div>
             </div>
 
             <div class="foot-left">
                 <img src="https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/footer/newErweima_9fa03e0.png"
-                    alt="code" style="width: 150px;height: 150px;">
+                    alt="code" class="foot-code">
             </div>
         </div>
     </div>
@@ -266,10 +267,11 @@
 
                     $('#newlist').append(`
                     <a class="newItem col-md-3 col-sm-6" href='./item.html?id=${res.data[i].id}'>
-                    <img data-src="${res.data[i].imgUrl}"
-                        alt="newImag" class='lazyload'>
-                    <span>${res.data[i].name}</span>
-                </a>
+                        <div class="newItem-imgwarppe">
+                            <img data-src="${res.data[i].imgUrl}" alt="newImag" class='lazyload'>
+                        </div>
+                        <span>${res.data[i].name}</span>
+                    </a>
                     `)
                 }
 

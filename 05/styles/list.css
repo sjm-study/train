@@ -9,14 +9,16 @@ a {
 }
 .menu {
     width: 100%;
+    max-width: 1200px;
     background-color: rgb(241,241,241);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    position: fixed;
+    margin: 0 auto;
+    /* position: fixed;
     top: 0;
-    z-index: 999999;
+    z-index: 999999; */
 }
 .menu div a {
     color: black;
@@ -39,10 +41,11 @@ a {
     margin-right: 10px;
     margin-top: 30px;
     margin:  30px auto 0;
+    width: 100%;
 }
 .newItem img {
     width: 210px;
-    height: 173px;
+    /* height: 173px; */
 }
 .title:hover {
     color: #eb1700;
@@ -82,13 +85,24 @@ a {
 }
 
 .menu-left {
-    margin-left: 50px;
+    margin-left: 10px;
 }
 .menu-right {
-    margin-right: 50px;
+    margin-right: 10px;
 }
 .height {
     min-height: calc(100% - 190px);
+}
+.foot-text {
+    font-size: 16px;
+}
+.foot-img {
+    width: 30px;
+    height: 30px;
+}
+.foot-code{
+    width: 150px;
+    height: 150px;
 }
 
 @media screen and (max-width:576px) {
@@ -104,7 +118,6 @@ a {
     }
     .newItem img {
         width: 100%;
-        height: 260px;
     }
     .newItem {
         flex-direction: column;
@@ -115,7 +128,7 @@ a {
 @media screen and (max-width: 1200px) and  (min-width: 992px) {
     .newItem img {
         width: 200px;
-        height: 173px;
+        /* height: 173px; */
     }
     .describe {
         font-size: 12px
@@ -126,9 +139,7 @@ a {
 }
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
-    .newItem img {
-        height: 150px;
-    }
+    
     .time {
         font-size: 12px;
     }
@@ -138,16 +149,36 @@ a {
     .height {
         min-height: calc(100% - 180px);
     }
+    .newItem img {
+        width: 160px;
+    }
 }
 @media screen and (max-width: 768px) and (min-width: 576px) {
     .height {
-        min-height: calc(100% - 150px);
+        min-height: calc(100% - 180px);
+    }
+    .newItem img {
+        width: 160px;
+    }
+    .title {
+        font-size: 12px;
     }
 }
 
 @media screen and (max-width:700px) {
     .foot-left {
         margin: 0 auto;
+    }
+    .foot-text {
+        font-size: 13px;
+    }
+    .foot-img {
+        width: 22px;
+        height: 22px;
+    }
+    .foot-code{
+        width: 100px;
+        height: 100px;
     }
 }
 

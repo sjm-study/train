@@ -78,13 +78,14 @@ ul {
     text-indent: 2em;
     display: block;
     padding: 10px;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 }
 
 .item img {
     width: 50%;
-    height: auto;
+    /* height: auto; */
+    overflow: hidden;
 }
 
 .item {
@@ -98,10 +99,22 @@ ul {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.newItem img {
+/* .newItem {
+    width: 100%;
+} */
+/* .newItem img {
     width: 100%;
     height: 185px;
     display: block;
+} */
+.newItem-imgwarppe {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+.newItem-imgwarppe img {
+    width: 100%;
+    height: 100%;
 }
 
 .newItem span {
@@ -115,15 +128,17 @@ ul {
 }
 
 .menu {
-    /* width: 100%; */
+    width: 100%;
+    max-width: 1200px;
     background-color: rgb(241, 241, 241);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    /* position: fixed; */
-    /* top: 0; */
-    z-index: 999999;
+    margin: 0 auto;
+    /* position: fixed;
+    top: 0;
+    z-index: 999999; */
 }
 
 .menu div a {
@@ -162,7 +177,7 @@ ul {
     margin-top: 0;
 }
 .tips {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     display: block;
 }
@@ -173,10 +188,10 @@ ul {
     display: flex;
 }
 .menu-left {
-    margin-left: 50px;
+    margin-left: 10px;
 }
 .menu-right {
-    margin-right: 50px;
+    margin-right: 10px;
 }
 .display-server1 {
     display: flex;
@@ -184,18 +199,18 @@ ul {
 .display-server2 {
     display: none;
 }
-@media screen and (max-width: 768px) {
-    .item img {
-        width: 100%;
-        max-width: 550px;
-        height: 280px;
-        margin: 0  auto;
-    }
-    .content, .tips {
-        font-size: 14px;
-        width: 100%;
-        max-width: 500px;
-    }
+.foot-text {
+    font-size: 16px;
+}
+.foot-img {
+    width: 30px;
+    height: 30px;
+}
+.foot-code{
+    width: 150px;
+    height: 150px;
+}
+@media screen and (max-width: 767px) {
     .item {
         justify-content: center;
         align-items: center;
@@ -213,8 +228,9 @@ ul {
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
     .item img {
-        width: 50%;
-        height: 280px;
+        width: 100%;
+        /* height: 280px; */
+        overflow: hidden;
     }
     .item {
         justify-content: center;
@@ -225,11 +241,45 @@ ul {
     }
     .content, .tips {
         font-size: 14px;
+        width: 100%;
+    }
+    .newItem-imgwarppe {
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+    }
+    .newItem-imgwarppe img {
+        width: 100%;
+    }
+    
+}
+
+@media screen and  (max-width: 768px) and (min-width: 576px) {
+    .item img {
         width: 80%;
+        overflow: hidden;
     }
-    .newItem img {
-        height: 150px;
+    .item {
+        justify-content: center;
+        align-items: center;
     }
+    .tips, .content{
+        width: 80%;
+        margin-left: 5px;
+        font-size: 14;
+        padding:0;
+        margin: 0 auto;
+    }
+    .newItem-imgwarppe {
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+    }
+    .newItem-imgwarppe img {
+        width: 100%;
+        /* height: 85%; */
+    }
+    
 }
 
 @media screen and (max-width:576px) {
@@ -257,9 +307,12 @@ ul {
     .service {
         padding: 5px 0;
     }
-    /* .service {
-        flex-wrap: wrap;
-    } */
+    .tips, .content{
+        width: 100%;
+        margin-left: 5px;
+        font-size: 14px;
+        padding:0
+    }
     .serviceItem {
         width: 100%;
 
@@ -270,9 +323,24 @@ ul {
     .display-server2 {
         display: block;
     }
+    .newItem-imgwarppe img {
+        width: 100%;
+        height: auto;
+    }
 }
 @media screen and (max-width:700px) {
     .foot-left {
         margin: 0 auto;
+    }
+    .foot-text {
+        font-size: 13px;
+    }
+    .foot-img {
+        width: 22px;
+        height: 22px;
+    }
+    .foot-code{
+        width: 100px;
+        height: 100px;
     }
 }

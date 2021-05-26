@@ -13,14 +13,16 @@ img {
 }
 .menu {
     width: 100%; 
+    max-width: 1200px;
     background-color: rgb(241,241,241);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    position: fixed;
+    margin: 0 auto;
+    /* position: fixed;
     top: 0;
-    z-index: 999999;
+    z-index: 999999; */
 }
 .menu div a {
     color: black;
@@ -45,20 +47,30 @@ img {
     color: rgb(105, 101, 101);
 }
 .menu-left {
-    margin-left: 50px;
+    margin-left: 10px;
 }
 .menu-right {
-    margin-right: 50px;
+    margin-right: 10px;
 }
 .height {
     min-height: calc(100% - 200px);
 }
 .mapsWapper {
     width: 100%; 
-    height: 300px;
+    height: 350px;
     margin: 0 auto;
 }
-
+.foot-text {
+    font-size: 16px;
+}
+.foot-img {
+    width: 30px;
+    height: 30px;
+}
+.foot-code{
+    width: 150px;
+    height: 150px;
+}
 
 
 @media screen and (max-width:576px) {
@@ -81,6 +93,17 @@ img {
 @media screen and (max-width:700px) {
     .foot-left {
         margin: 0 auto;
+    }
+    .foot-text {
+        font-size: 13px;
+    }
+    .foot-img {
+        width: 22px;
+        height: 22px;
+    }
+    .foot-code{
+        width: 100px;
+        height: 100px;
     }
 }
 

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>React</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script type="text/babel">
+        function App() {
+            const { useState, useEffect } = window.React
+            const [data, setData] = useState([])
+            const select = [
+                {
+                    name: 'All',
+                    select: true
+                },
+                {
+                    name: 'Javascript',
+                    select: false
+                },
+                {
+                    name: 'Ruby',
+                    select: false
+                },
+                {
+                    name: 'Java',
+                    select: false
+                },
+                {
+                    name: 'CSS',
+                    select: false
+                },
+                {
+                    name: 'Python',
+                    select: false
+                }
+            ]
+
+            useEffect(() => {
+                axios.get('https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories')
+                    .then(res => {
+                        console.log(res.data)
+                        setData(res.data.items)
+                    })
+            }, [])
+
+
+
+            return (
+                <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ margin: '20px auto', textAlign: 'center' }}>
+                        {
+                            select.map((item, index) => {
+                                return (
+                                    <span style={{ color: item.select ? '#eb1700' : 'black', marginLeft: 20, fontWeight: '600' }} key={index} >{item.name}</span>
+                                )
+                            })
+                        }
+                    </div>
+                    <div style={{ width: '90%', margin: '0 auto', display: 'flex', flexWrap: 'wrap' }}>
+
+                        {
+                            data.map((item, index) => {
+                                return (
+                                    <div style={{ width: '22.5%', padding: '10px 5px' }} key={index} >
+                                        <div style={{ textAlign: 'center', backgroundColor: 'rgb(235,235,235)', padding: '20px 5px', borderRadius: 3, width: 'calc(100% - 10px)' }} >
+                                            <span style={{ fontWeight: '500', fontSize: 18, display: 'block', marginBottom: 10 }} >#{index+1}</span>
+                                            <div>
+                                                <img src={item.owner.avatar_url} alt="avatar_url" style={{ width: 110, height: 'auto' }} />
+                                            </div>
+                                            <span style={{ color: '#eb1700', fontSize: 15, margin: '10px 0', display: 'block', fontWeight: '600' }} >{item.owner.login}</span>
+                                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                <div style={{ width: '70%', textAlign: 'left' }}>
+                                                    <span class='fa fa-user' style={{ color: 'rgb(255,191,116)', marginLeft: 2 }}></span>
+                                                    <span style={{ fontSize: 14, fontWeight: '600', marginLeft: 8 }} >{item.owner.login}</span>
+                                                </div>
+                                                <div style={{ width: '70%', textAlign: 'left' }}>
+                                                    <span class='fa fa-star' style={{ color: 'rgb(255,215,0)' }}></span>
+                                                    <span style={{ fontSize: 14, marginLeft: 5 }} >{item.stargazers_count} start</span>
+                                                </div>
+                                                <div style={{ width: '70%', textAlign: 'left' }}>
+                                                    <span class='fa fa-share-alt fa-rotate-270' style={{ color: 'rgb(147,201,242)' }}></span>
+                                                    <span style={{ fontSize: 14, marginLeft: 7 }} >{item.forks_count} forks</span>
+                                                </div>
+                                                <div style={{ width: '70%', textAlign: 'left' }}>
+                                                    <span class='fa fa-warning' style={{ color: 'rgb(240,144,151)' }}></span>
+                                                    <span style={{ fontSize: 14, marginLeft: 5 }} >{item.open_issues_count} open issuses</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+
+                            })
+                        }
+
+
+
+                    </div>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('demo'))
+
+    </script>
+
+</body>
+
+</html>
