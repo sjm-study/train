@@ -56,6 +56,10 @@
                     })
             }, [])
 
+            changeNumber = (number) => {
+                return (number || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+            }
+
 
 
             return (
@@ -88,15 +92,15 @@
                                                 </div>
                                                 <div style={{ width: '70%', textAlign: 'left' }}>
                                                     <span class='fa fa-star' style={{ color: 'rgb(255,215,0)' }}></span>
-                                                    <span style={{ fontSize: 14, marginLeft: 5 }} >{item.stargazers_count} start</span>
+                                                    <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(item.stargazers_count)} start</span>
                                                 </div>
                                                 <div style={{ width: '70%', textAlign: 'left' }}>
                                                     <span class='fa fa-share-alt fa-rotate-270' style={{ color: 'rgb(147,201,242)' }}></span>
-                                                    <span style={{ fontSize: 14, marginLeft: 7 }} >{item.forks_count} forks</span>
+                                                    <span style={{ fontSize: 14, marginLeft: 7 }} >{changeNumber(item.forks_count)} forks</span>
                                                 </div>
                                                 <div style={{ width: '70%', textAlign: 'left' }}>
                                                     <span class='fa fa-warning' style={{ color: 'rgb(240,144,151)' }}></span>
-                                                    <span style={{ fontSize: 14, marginLeft: 5 }} >{item.open_issues_count} open issuses</span>
+                                                    <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(item.open_issues_count)} open issuses</span>
                                                 </div>
                                             </div>
                                         </div>
