@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.0/antd.min.css"
+        integrity="sha512-qpAyFUbpWTIBTmcBhcz3V/kae89kv5QNW57JpO4dCJf8jLOnCkvsKu34qWrm1rUwv9t17FtREmCleEKaQX6TTQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Result</title>
+</head>
+
+<body>
+
+    <div id="demo"></div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.0/antd.min.js"
+        integrity="sha512-vliFubIZcvy4iWtxrImvRjJmQuRPIhqGCEW/tF/PxoF56Wuc/uYetnqqq8xWWmDxrCN8ngf+iN6O+1p5tTTaSA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/babel">
+        function App() {
+
+            const { useState, useEffect } = window.React
+            const [playOne, setPlayOne] = useState({})
+            const [playTwo, setPlayTwo] = useState({})
+
+            const [show, setShow] = useState(false)
+
+            useEffect(() => {
+                console.log(window.location.href)
+                var p = window.location.href
+                var play1 = p.split('play1=')[1].split('&&')[0]
+                var play2 = p.split('play2=')[1]
+                console.log(play1, play2)
+                axios.get(`https://api.github.com/users/${play1}`).then(res => {
+                    setPlayOne(res.data)
+                }).catch(error =>setShow(true))
+                axios.get(`https://api.github.com/users/${play2}`).then(res =>setPlayTwo(res.data) ).catch(error=>setShow(true))
+            }, [])
+
+            changeNumber = (number) => {
+                return (number || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+            }
+
+            Results = (num1, num2) => {
+                if (num1 > num2) {
+                    return 'Winner'
+                } else if (num1 < num2) {
+                    return 'Loser'
+                } else {
+                    return 'Draw'
+                }
+            }
+
+            return (
+                <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ marginTop: 20 }}>
+                        <a href="./index.html" style={{
+                            textDecoration: 'none', color: '#000', fontSize: 20, marginRight: 20
+                        }}>PoPular</a>
+                        <a href='./battle.html' style={{ textDecoration: 'none', color: '#000', fontSize: 20, marginRight: 20 }}>Battle</a>
+                    </div>
+                    
+                    <p style={{ textAlign: 'center', fontSize: 24, fontWeight: 'bold' }}>Results</p>
+                    <antd.Alert
+                        message="Loading failed, please try again later!"
+                        type="error"
+                        closable
+                        onClose={() => setShow(false)}
+                        style={{ display: show ? 'flex' : 'none' }}
+                    />
+
+                    <antd.Row style={{ width: '90%', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                        <antd.Col style={{ width: '100%', padding: '10px 5px',maxWidth:400 }} sm={12}  >
+                            <div style={{ textAlign: 'center', backgroundColor: 'rgb(235,235,235)', padding: '20px 5px', borderRadius: 3, width: 'calc(100% - 10px)' }} >
+                                <span style={{ fontWeight: '500', fontSize: 18, display: 'block', marginBottom: 10 }} >{Results(playOne.public_repos, playTwo.public_repos)}</span>
+                                <div>
+                                    <img src={playOne.avatar_url} alt="avatar_url" style={{ width: 110, height: 'auto' }} />
+                                </div>
+                                <span style={{ color: '#000', fontSize: 15, margin: '10px 0', display: 'block', fontWeight: '600' }} >Scores: {playOne.public_repos}</span>
+                                <span style={{ color: '#1890ff', fontSize: 18, margin: '10px 0', display: 'block', fontWeight: '600' }} >{playOne.name}</span>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <div style={{ width: '70%', textAlign: 'left' }}>
+                                        <span className='fa fa-user' style={{ color: 'rgb(255,191,116)', marginLeft: 2, }}></span>
+                                        <span style={{ fontSize: 14, fontWeight: '600', marginLeft: 8 }} >{playOne.location}</span>
+                                    </div>
+                                    <div style={{ width: '70%', textAlign: 'left' }}>
+                                        <span className='fa fa-star' style={{ color: 'rgb(255,215,0)' }}></span>
+                                        <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playOne.followers)}</span>
+                                    </div>
+                                    <div style={{ width: '70%', textAlign: 'left' }}>
+                                        <span className='fa fa-share-alt fa-rotate-270' style={{ color: 'rgb(147,201,242)' }}></span>
+                                        <span style={{ fontSize: 14, marginLeft: 7 }} >{changeNumber(playOne.following)}</span>
+                                    </div>
+                                    <div style={{ width: '70%', textAlign: 'left' }}>
+                                        <span className='fa fa-warning' style={{ color: 'rgb(240,144,151)' }}></span>
+                                        <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playOne.public_repos)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </antd.Col>
+                        <antd.Col style={{ width: '100%', padding: '10px 5px',maxWidth:400 }} sm={12}>
+                            <div style={{ textAlign: 'center', backgroundColor: 'rgb(235,235,235)', padding: '20px 5px', borderRadius: 3, width: 'calc(100% - 10px)' }} >
+                                <span style={{ fontWeight: '500', fontSize: 18, display: 'block', marginBottom: 10 }} >{Results(playTwo.public_repos, playOne.public_repos)}</span>
+                                <div>
+                                    <img src={playTwo.avatar_url} alt="avatar_url" style={{ width: 110, height: 'auto' }} />
+                                </div>
+                                <span style={{ color: '#000', fontSize: 15, margin: '10px 0', display: 'block', fontWeight: '600' }} >Scores: {playTwo.public_repos}</span>
+                                <span style={{ color: '#1890ff', fontSize: 18, margin: '10px 0', display: 'block', fontWeight: '600' }} >{playTwo.name}</span>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <div style={{ width: '70%', textAlign: 'left' }}>
+                                        <span className='fa fa-user' style={{ color: 'rgb(255,191,116)', marginLeft: 2, }}></span>
+                                        <span style={{ fontSize: 14, fontWeight: '600', marginLeft: 8 }} >{playTwo.location}</span>
+                                    </div>
+                                    <div style={{ width: '70%', textAlign: 'left' }}>
+                                        <span className='fa fa-star' style={{ color: 'rgb(255,215,0)' }}></span>
+                                        <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playTwo.followers)}</span>
+                                    </div>
+                                    <div style={{ width: '70%', textAlign: 'left' }}>
+                                        <span className='fa fa-share-alt fa-rotate-270' style={{ color: 'rgb(147,201,242)' }}></span>
+                                        <span style={{ fontSize: 14, marginLeft: 7 }} >{changeNumber(playTwo.following)}</span>
+                                    </div>
+                                    <div style={{ width: '70%', textAlign: 'left' }}>
+                                        <span className='fa fa-warning' style={{ color: 'rgb(240,144,151)' }}></span>
+                                        <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playTwo.public_repos)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </antd.Col>
+                    </antd.Row>
+
+                    <div style={{ width: '100%', justifyContent: 'center', marginTop: 50, display: 'flex' }}>
+                        <button style={{ fontSize: 18, width: 200, paddingTop: 10, paddingBottom: 10, }}
+                            onClick={() => { window.location.href = `./battle.html` }}
+                        >Reset</button>
+                    </div>
+
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('demo'))
+
+    </script>
+
+</body>
+
+</html>

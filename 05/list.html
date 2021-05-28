@@ -8,46 +8,61 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <link rel="stylesheet" href="./styles/list.css">
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/list.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-
     <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-        crossorigin="anonymous"></script>
+
     <script src="./js/lazysizes.min.js" async=""></script>
     <title>Document</title>
 </head>
 
 <body>
     <!-- menu -->
-    <div style="width: 100%;background-color:rgb(241, 241, 241); position: fixed;top: 0;z-index: 9999;">
-        <div class="menu">
-            <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
-                <img src="./assents/logo.png" alt="logo" style="width: 30px;height: 30px;" />
-                <span style="color: black">镇魂街</span>
-            </a>
-            <div style="display: flex;align-items: center;" class="menu-right">
-                <a href="./index.html">首页</a>
-                <a href="./list.html">新闻</a>
-                <a href="./aboutus.html">关于我们</a>
+    <div style="background-color: rgb(215,215,215);width: 100%;" >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%; max-width: 1200px; margin: 0 auto;background-color: rgb(215,215,215);">
+            <div style="width:100px; padding-top: 8px;">
+                <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
+                    <img src="./assents/logo.png" alt="logo" style="width: 35px;height: 35px;" />
+                    <span style="color: black; font-size: 16px;">镇魂街</span>
+                </a>
             </div>
-        </div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html" style="font-size: 18px;">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./list.html?page=1" style="font-size: 18px;">新闻</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./aboutus.html" style="font-size: 18px;">关于我们</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
 
 
     <div class="container-fluid height">
 
         <div style="max-width: 1200px; width:100%;margin: 0 auto; padding-top: 60px;">
-            <p style="color: #2f63ba; font-weight: bold;margin-left: 20px;margin-bottom: 5px;">新闻动态</p>
+            <p
+                style="color: #2f63ba; font-weight: bold;margin-left: 20px;margin-bottom: 5px;font-size: 18px;margin-top: 15px;">
+                新闻动态</p>
             <div style="border-bottom: 1px solid rgb(200,200,200); margin-top: 5px;">
                 <div style="width: 124px;height: 2px;background-color:#2f63ba;"></div>
             </div>
@@ -68,30 +83,11 @@
             </div>
 
             <!-- 分页器 -->
-            <div style="display: flex;flex-direction: row;justify-content: center;margin-top: 10px;" id='pager'>
-            </div>
+            <nav aria-label="Page navigation example" style="text-align: center; margin-left: calc((100% - 170px) / 2); margin-top: 25px;">
+                <ul class="pagination" id='nav'>
+                </ul>
+            </nav>
 
-            
-                <nav aria-label="Page navigation" style="text-align: center;">
-                    <ul class="pagination" id='nav'>
-                        <!-- <li class="disabled">
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li> -->
-                        <!-- <li class="active"><a href="#">1</a></li>
-                        <li class="disabled"><a href="#">2</a></li>
-                        <li><a href="#" onclick="return false">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li> -->
-                        <!-- <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li> -->
-                    </ul>
-                </nav>
-            
 
         </div>
 
@@ -134,7 +130,8 @@
         $(document).ready(function () {
 
 
-            var pagerIndex = localStorage.page ? JSON.parse(localStorage.page) : 1
+            var pagerIndex = parseInt(window.location.href.split('?page=')[1])
+            console.log(window.location.href)
 
             $('#logo').click(function () {
                 window.location.href = './index.html'
@@ -168,18 +165,18 @@
 
                     // }
 
-                    var navpage = `<li class="${pagerIndex === 1 ? 'disabled' : ' '}" id='Previous'>
-                        <a href="#" aria-label="Previous" onclick="return false">
+                    var navpage = `<li class="${pagerIndex === 1 ? 'disabled' : ' '} page-item" id='Previous'>
+                        <a href="#" aria-label="Previous" onclick="return false" class="page-link">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>`
                     for (let z = 0; z < res.data.total / 6; z++) {
                         navpage = navpage + `
-                        <li class="${z === pagerIndex - 1 ? 'active' : ''} " key='${z}'><a href="#" onclick="return false">${z + 1}</a></li>
+                        <li class="${z === pagerIndex - 1 ? 'active' : ''} page-item " key='${z}'><a href="#" onclick="return false" class='page-link'>${z + 1}</a></li>
                     `
                     }
-                    navpage = navpage + `<li class="${pagerIndex === res.data.total / 6 ? 'disabled' : ' '}" id='Next'>
-                        <a href="#" aria-label="Next"  onclick="return false">
+                    navpage = navpage + `<li class="${pagerIndex === res.data.total / 6 ? 'disabled' : ' '} page-item" id='Next'>
+                        <a href="#" aria-label="Next" class='page-link'  onclick="return false">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>`
@@ -190,7 +187,7 @@
             }
 
             // 第一次获取
-            getData(1)
+            getData(pagerIndex)
 
             // 点击上一页
             $(document).on('click', '#Previous', function () {
@@ -199,7 +196,9 @@
                     $('#nav li').remove()
                     getData(pagerIndex - 1)
                     pagerIndex -= 1
-                    localStorage.page = JSON.stringify(pagerIndex)
+                    // localStorage.page = JSON.stringify(pagerIndex)
+                    var valiable = window.location.href.split('?')[0] + `?page=${pagerIndex}`
+                    window.history.pushState({}, 0, valiable);
                 }
             })
 
@@ -211,7 +210,10 @@
                     $('#nav li').remove()
                     getData(pagerIndex + 1)
                     pagerIndex++
-                    localStorage.page = JSON.stringify(pagerIndex)
+                    // localStorage.page = JSON.stringify(pagerIndex)
+                    console.log(window.location)
+                    var valiable = window.location.href.split('?')[0] + `?page=${pagerIndex}`
+                    window.history.pushState({}, 0, valiable);
                 }
             })
 
@@ -219,9 +221,11 @@
 
             // 点击分页器
             $(document).on('click', '#nav li', function () {
-                if ($(this).index() !== 0 && $(this).index()+1 !== $('#nav').children().length) {
+                if ($(this).index() !== 0 && $(this).index() + 1 !== $('#nav').children().length) {
                     pagerIndex = $(this).index()
-                    localStorage.page = JSON.stringify(pagerIndex)
+                    // localStorage.page = JSON.stringify(pagerIndex)
+                    var valiable = window.location.href.split('?')[0] + `?page=${pagerIndex}`
+                    window.history.pushState({}, 0, valiable);
                     // $('div#pager div').eq(pagerIndex).addClass('active-pager').siblings().removeClass('active-pager')
                     $('div#newlist .newItem').remove()
                     $('#nav li').remove()

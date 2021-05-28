@@ -15,6 +15,12 @@ ul {
     color: rgb(6, 241, 241);
 }
 
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #eb1700;
+}
+.bg-light {
+    background-color: rgb(215,215,215)!important;
+}
 .bannner {
     width: 100%;
     height: 90%;
@@ -111,10 +117,13 @@ ul {
     width: 100%;
     height: 150px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .newItem-imgwarppe img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .newItem span {
@@ -127,29 +136,6 @@ ul {
     color: #eb1700;
 }
 
-.menu {
-    width: 100%;
-    max-width: 1200px;
-    background-color: rgb(241, 241, 241);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    margin: 0 auto;
-    /* position: fixed;
-    top: 0;
-    z-index: 999999; */
-}
-
-.menu div a {
-    color: black;
-    display: block;
-    margin: 0 10px 0 10px;
-}
-
-.menu div a:hover {
-    color: #eb1700;
-}
 
 .foot {
     width: 100%;
@@ -203,8 +189,8 @@ ul {
     font-size: 16px;
 }
 .foot-img {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 .foot-code{
     width: 150px;
@@ -225,6 +211,17 @@ ul {
         height: 240px;
     }
 }
+@media (min-width: 992px){
+    .navbar-expand-lg .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
+
+
+
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
     .item img {
@@ -247,9 +244,13 @@ ul {
         width: 100%;
         height: 100px;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .newItem-imgwarppe img {
         width: 100%;
+        /* height: 100%; */
     }
     
 }
@@ -272,8 +273,11 @@ ul {
     }
     .newItem-imgwarppe {
         width: 100%;
-        height: 100px;
+        height: 120px;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .newItem-imgwarppe img {
         width: 100%;

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.0/antd.min.css"
+        integrity="sha512-qpAyFUbpWTIBTmcBhcz3V/kae89kv5QNW57JpO4dCJf8jLOnCkvsKu34qWrm1rUwv9t17FtREmCleEKaQX6TTQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Battle</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./lazysizes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.0/antd.min.js"
+        integrity="sha512-vliFubIZcvy4iWtxrImvRjJmQuRPIhqGCEW/tF/PxoF56Wuc/uYetnqqq8xWWmDxrCN8ngf+iN6O+1p5tTTaSA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/babel">
+        function App() {
+            const { useState, useEffect, useRef } = window.React
+            const [playerOneName, setPlayerOneName] = useState('')
+            const [playerTwoName, setPlayerTwoName] = useState('')
+
+            const [playImg1, setPlayImg1] = useState('')
+            const [playImg2, setPlayImg2] = useState('')
+
+            const [displayOne, setDisplayOne] = useState(false)
+            const [displayTwo, setDisplayTwo] = useState(false)
+
+            const [error1, setError1] = useState(false)
+            const [error2, setError2] = useState(false)
+
+            const [ET1, setET1] = useState('')
+            const [ET2, setET2] = useState('')
+
+            const [Loading1, setLoading1] = useState(false)
+            const [Loading2, setLoading2] = useState(false)
+
+
+
+            submit1 = () => {
+                if (playerOneName === playerTwoName) {
+                    alert('playOneName is same of platTwoName!!')
+                } else {
+                    setLoading1(true)
+                    $('#img1').removeClass('lazyload')
+                    axios.get(`https://api.github.com/users/${playerOneName}`).then(res => {
+                        if (res.data.message) {
+                            console.log('fail')
+
+                        } else {
+                            setPlayImg1(res.data.avatar_url)
+                            setDisplayOne(true)
+                            $('#img1').addClass('lazyload')
+                        }
+                        setLoading1(false)
+                    }).catch(error => {
+                        setLoading1(false)
+                        setError1(true)
+                        setET1('Not Found')
+                    })
+                }
+
+            }
+
+            submit2 = () => {
+                if (playerOneName === playerTwoName) {
+                    alert('playOneName is same of platTwoName!!')
+                } else {
+                    setLoading2(true)
+                $('#img2').removeClass('lazyload')
+                axios.get(`https://api.github.com/users/${playerTwoName}`).then(res => {
+                    if (res.data.message) {
+                        console.log('fail')
+
+                    } else {
+                        setPlayImg2(res.data.avatar_url)
+                        setDisplayTwo(true)
+                        $('#img2').addClass('lazyload')
+                    }
+                    setLoading2(false)
+                }).catch(error => {
+                    setLoading2(false)
+                    setError2(true)
+                    setET2('Not Found')
+                })
+                }
+                
+            }
+
+
+            test = () => {
+                if (!error1 && !error2) {
+                    window.location.href = `./results.html?play1=${playerOneName}&&play2=${playerTwoName}`
+                } else {
+                    alert('请检查')
+                }
+            }
+            handleKey = (e) => {
+                if (e.nativeEvent.keyCode === 13 && e.target.value.length > 0) {
+                    submit1()
+                }
+            }
+
+
+            return (
+                <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ marginTop: 20 }}>
+                        <a href="./index.html" style={{
+                            textDecoration: 'none', color: '#000', fontSize: 20, marginRight: 20
+                        }}>PoPular</a>
+                        <a href='#' style={{ textDecoration: 'none', color: '#1890ff', fontSize: 20, marginRight: 20 }}>Battle</a>
+                    </div>
+
+                    <p style={{ textAlign: 'center', fontSize: 24, fontWeight: 'bold' }}>Instructions</p>
+                    <antd.Row style={{ display: 'flex', justifyContent: 'space-around' }}>
+                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={24} xs={24}>
+                            <span style={{ display: 'block', fontSize: 18 }}>Enter two Github:</span>
+                            <i className='fa fa-users' style={{
+                                color: 'rgb(255, 191, 116)', backgroundColor: '#eee', fontSize:
+                                    120, padding: 32
+                            }}></i>
+                        </antd.Col>
+                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={24} xs={24}>
+                            <span style={{ display: 'block', fontSize: 18 }}>Battle:</span>
+                            <i className='fa fa-fighter-jet' style={{
+                                color: 'gray', backgroundColor: '#eee', fontSize: 120,
+                                padding: 32
+                            }}></i>
+                        </antd.Col>
+                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={24} xs={24}>
+                            <span style={{ display: 'block', fontSize: 18 }}>See the winner:</span>
+                            <i className='fa fa-trophy' style={{
+                                color: 'rgb(244,234,47)', backgroundColor: '#eee', fontSize: 120,
+                                padding: 32
+                            }}></i>
+                        </antd.Col>
+                    </antd.Row>
+
+                    <p style={{ textAlign: 'center', fontSize: 24, fontWeight: 'bold' }}>Players</p>
+                    <antd.Row style={{ display: 'flex', width: '100%' }}>
+                        <antd.Col style={{ width: '100%' }} md={12} sm={24}>
+                            <p style={{ fontSize: 24, fontWeight: 'bold' }}>Player One</p>
+
+                            <div style={{ display: displayOne ? 'none' : 'flex' }}>
+                                <input style={{ width: '60%', height: 30, paddingLeft: 10, borderWidth: 1, display: 'inline' }}
+                                    value={playerOneName} onChange={e => { setPlayerOneName(e.target.value), setError1(false) }} onKeyDown={(e) => handleKey(e)} />
+                                <button style={{ width: '25%', fontSize: 15, marginLeft: 15 }} disabled={playerOneName.length > 0 && !Loading1 && !error1 ?
+                                    false : true}
+                                    onClick={submit1}
+                                >Submit <i className="fa fa-spinner fa-spin fa-1x" style={{ display: Loading1 ? 'inline' : 'none' }}></i></button>
+
+                            </div>
+                            <span style={{ fontSize: 13, color: '#eb1700', display: error1 ? 'block' : 'none' }} id='span1' >{ET1}</span>
+
+                            <div style={{
+                                width: '90%', backgroundColor: 'rgb(200,200,200)', padding: 20, display: !displayOne
+                                    ? 'none' : 'flex', justifyContent: 'space-between', alignItems: 'center'
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center' }} id='img-left'>
+                                    <img data-src={playImg1} style={{
+                                        width: 64, height: 64, fontSize: 12,
+                                        borderRadius: 5
+                                    }} alt='logoImg' className='lazyload' src={'./zhanwei.jpg'} id='img1' />
+                                    <span style={{
+                                        fontSize: 24, color: '1890ff', fontWeight: '600', marginLeft: 5
+                                    }}>{playerOneName}</span>
+                                </div>
+                                <div onClick={() => { setDisplayOne(false), setPlayerOneName('') }}>
+                                    <img src={'./close.png'} style={{ width: 42, height: 42 }} />
+                                </div>
+
+                            </div>
+
+                        </antd.Col>
+
+                        <antd.Col style={{ width: '100%' }} md={12} sm={24}>
+                            <p style={{ fontSize: 24, fontWeight: 'bold' }}>Player Two</p>
+
+                            <div style={{ display: displayTwo ? 'none' : 'flex', }}>
+                                <input style={{ width: '60%', height: 30, paddingLeft: 10, borderWidth: 1, display: 'inline' }}
+                                    value={playerTwoName} onChange={e => { setPlayerTwoName(e.target.value), setError2(false) }} />
+                                <button style={{ width: '25%', fontSize: 15, marginLeft: 15 }} disabled={playerTwoName.length > 0 && !Loading2 && !error2 ?
+                                    false : true} onClick={submit2}
+                                >Submit <i className="fa fa-spinner fa-spin fa-1x" style={{ display: Loading2 ? 'inline' : 'none' }}></i></button>
+                            </div>
+                            <span style={{ fontSize: 13, color: '#eb1700', display: error2 ? 'block' : 'none' }} id='span1' >{ET2}</span>
+
+                            <div style={{
+                                width: '90%', backgroundColor: 'rgb(200,200,200)', padding: 20, display: !displayTwo
+                                    ? 'none' : 'flex', justifyContent: 'space-between', alignItems: 'center'
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <img data-src={playImg2} style={{
+                                        width: 64, height: 64, fontSize: 12,
+                                        borderRadius: 5
+                                    }} className='lazyload' id='img2' src={'./zhanwei.jpg'} alt='logoImg' />
+                                    <span style={{
+                                        fontSize: 24, color: '1890ff', fontWeight: '600', marginLeft: 5
+                                    }} id='span2'>{playerTwoName}</span>
+                                </div>
+                                <div onClick={() => { setDisplayTwo(false), setPlayerTwoName('') }}>
+                                    <img src={'./close.png'} style={{ width: 42, height: 42 }} />
+                                </div>
+                            </div>
+                        </antd.Col>
+                    </antd.Row>
+
+                    <div style={{
+                        width: '100%', justifyContent: 'center', marginTop: 50,
+                        display: displayOne && displayTwo ? 'flex' : 'none',
+                    }}>
+                        <button style={{ fontSize: 18, width: 200, paddingTop: 10, paddingBottom: 10, textAlign: 'center' }}
+                            onClick={test}
+                        >Battle</button>
+                    </div>
+                </div>
+            )
+        }
+
+        ReactDOM.render(
+            <App />, document.getElementById('demo'))
+    </script>
+
+</body>
+
+</html>
