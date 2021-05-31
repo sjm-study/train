@@ -36,13 +36,17 @@
             useEffect(() => {
                 console.log(window.location.href)
                 var p = window.location.href
-                var play1 = p.split('play1=')[1].split('&&')[0]
+                var play1 = p.split('play1=')[1] && p.split('play1=')[1].split('&')[0]
                 var play2 = p.split('play2=')[1]
-                console.log(play1, play2)
-                axios.get(`https://api.github.com/users/${play1}`).then(res => {
-                    setPlayOne(res.data)
-                }).catch(error =>setShow(true))
-                axios.get(`https://api.github.com/users/${play2}`).then(res =>setPlayTwo(res.data) ).catch(error=>setShow(true))
+                if (play1 && play2) {
+                    axios.get(`https://api.github.com/users/${play1}`).then(res => {
+                        setPlayOne(res.data)
+                        console.log(res)
+                    }).catch(error => {setShow(true),console.log(error)})
+                    axios.get(`https://api.github.com/users/${play2}`).then(res => setPlayTwo(res.data)).catch(error => setShow(true))
+                } else {
+                    window.location.href='./battle.html'
+                }
             }, [])
 
             changeNumber = (number) => {
@@ -67,10 +71,10 @@
                         }}>PoPular</a>
                         <a href='./battle.html' style={{ textDecoration: 'none', color: '#000', fontSize: 20, marginRight: 20 }}>Battle</a>
                     </div>
-                    
+
                     <p style={{ textAlign: 'center', fontSize: 24, fontWeight: 'bold' }}>Results</p>
                     <antd.Alert
-                        message="Loading failed, please try again later!"
+                        message="API rate limit exceeded for 172.104.66.211. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)"
                         type="error"
                         closable
                         onClose={() => setShow(false)}
@@ -78,7 +82,7 @@
                     />
 
                     <antd.Row style={{ width: '90%', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                        <antd.Col style={{ width: '100%', padding: '10px 5px',maxWidth:400 }} sm={12}  >
+                        <antd.Col style={{ width: '100%', padding: '10px 5px', maxWidth: 400 }} sm={12} xs={12}  >
                             <div style={{ textAlign: 'center', backgroundColor: 'rgb(235,235,235)', padding: '20px 5px', borderRadius: 3, width: 'calc(100% - 10px)' }} >
                                 <span style={{ fontWeight: '500', fontSize: 18, display: 'block', marginBottom: 10 }} >{Results(playOne.public_repos, playTwo.public_repos)}</span>
                                 <div>
@@ -106,7 +110,7 @@
                                 </div>
                             </div>
                         </antd.Col>
-                        <antd.Col style={{ width: '100%', padding: '10px 5px',maxWidth:400 }} sm={12}>
+                        <antd.Col style={{ width: '100%', padding: '10px 5px', maxWidth: 400 }} sm={12} xs={12}>
                             <div style={{ textAlign: 'center', backgroundColor: 'rgb(235,235,235)', padding: '20px 5px', borderRadius: 3, width: 'calc(100% - 10px)' }} >
                                 <span style={{ fontWeight: '500', fontSize: 18, display: 'block', marginBottom: 10 }} >{Results(playTwo.public_repos, playOne.public_repos)}</span>
                                 <div>

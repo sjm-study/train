@@ -49,9 +49,9 @@
 
 
 
-            submit1 = () => {
+            const submit1 = () => {
                 if (playerOneName === playerTwoName) {
-                    alert('playOneName is same of platTwoName!!')
+                    setET1('playOneName is same of platTwoName!!')
                 } else {
                     setLoading1(true)
                     $('#img1').removeClass('lazyload')
@@ -63,6 +63,7 @@
                             setPlayImg1(res.data.avatar_url)
                             setDisplayOne(true)
                             $('#img1').addClass('lazyload')
+                            setET1('')
                         }
                         setLoading1(false)
                     }).catch(error => {
@@ -74,9 +75,9 @@
 
             }
 
-            submit2 = () => {
+            const submit2 = () => {
                 if (playerOneName === playerTwoName) {
-                    alert('playOneName is same of platTwoName!!')
+                    setET2('playOneName is same of platTwoName!!')
                 } else {
                     setLoading2(true)
                 $('#img2').removeClass('lazyload')
@@ -88,6 +89,7 @@
                         setPlayImg2(res.data.avatar_url)
                         setDisplayTwo(true)
                         $('#img2').addClass('lazyload')
+                        setET2('')
                     }
                     setLoading2(false)
                 }).catch(error => {
@@ -100,22 +102,28 @@
             }
 
 
-            test = () => {
+            const test = () => {
                 if (!error1 && !error2) {
-                    window.location.href = `./results.html?play1=${playerOneName}&&play2=${playerTwoName}`
+                    window.location.href = `./results.html?play1=${playerOneName}&play2=${playerTwoName}`
                 } else {
                     alert('请检查')
                 }
             }
-            handleKey = (e) => {
-                if (e.nativeEvent.keyCode === 13 && e.target.value.length > 0) {
+            const handleKey1 = (e) => {
+                if (e.nativeEvent.keyCode === 13 && e.target.value.length > 0 && !Loading1 && !error1) {
                     submit1()
+                }
+            }
+            const handleKey2 = (e) => {
+                if (e.nativeEvent.keyCode === 13 && e.target.value.length > 0 && !Loading2 && !error2) {
+                    submit2()
                 }
             }
 
 
+
             return (
-                <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+                <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto',paddingLeft:10,paddingRight:10 }}>
                     <div style={{ marginTop: 20 }}>
                         <a href="./index.html" style={{
                             textDecoration: 'none', color: '#000', fontSize: 20, marginRight: 20
@@ -125,24 +133,24 @@
 
                     <p style={{ textAlign: 'center', fontSize: 24, fontWeight: 'bold' }}>Instructions</p>
                     <antd.Row style={{ display: 'flex', justifyContent: 'space-around' }}>
-                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={24} xs={24}>
+                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={12} xs={12}>
                             <span style={{ display: 'block', fontSize: 18 }}>Enter two Github:</span>
                             <i className='fa fa-users' style={{
                                 color: 'rgb(255, 191, 116)', backgroundColor: '#eee', fontSize:
-                                    120, padding: 32
+                                    90, padding: 32
                             }}></i>
                         </antd.Col>
-                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={24} xs={24}>
+                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={12} xs={12}>
                             <span style={{ display: 'block', fontSize: 18 }}>Battle:</span>
                             <i className='fa fa-fighter-jet' style={{
-                                color: 'gray', backgroundColor: '#eee', fontSize: 120,
+                                color: 'gray', backgroundColor: '#eee', fontSize: 90,
                                 padding: 32
                             }}></i>
                         </antd.Col>
-                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={24} xs={24}>
+                        <antd.Col style={{ textAlign: 'center' }} md={8} sm={12} xs={12}>
                             <span style={{ display: 'block', fontSize: 18 }}>See the winner:</span>
                             <i className='fa fa-trophy' style={{
-                                color: 'rgb(244,234,47)', backgroundColor: '#eee', fontSize: 120,
+                                color: 'rgb(244,234,47)', backgroundColor: '#eee', fontSize: 90,
                                 padding: 32
                             }}></i>
                         </antd.Col>
@@ -155,15 +163,13 @@
 
                             <div style={{ display: displayOne ? 'none' : 'flex' }}>
                                 <input style={{ width: '60%', height: 30, paddingLeft: 10, borderWidth: 1, display: 'inline' }}
-                                    value={playerOneName} onChange={e => { setPlayerOneName(e.target.value), setError1(false) }} onKeyDown={(e) => handleKey(e)} />
+                                    value={playerOneName} onChange={e => { setPlayerOneName(e.target.value), setError1(false) }} onKeyDown={(e) => handleKey1(e)} />
                                 <button style={{ width: '25%', fontSize: 15, marginLeft: 15 }} disabled={playerOneName.length > 0 && !Loading1 && !error1 ?
                                     false : true}
                                     onClick={submit1}
                                 >Submit <i className="fa fa-spinner fa-spin fa-1x" style={{ display: Loading1 ? 'inline' : 'none' }}></i></button>
 
                             </div>
-                            <span style={{ fontSize: 13, color: '#eb1700', display: error1 ? 'block' : 'none' }} id='span1' >{ET1}</span>
-
                             <div style={{
                                 width: '90%', backgroundColor: 'rgb(200,200,200)', padding: 20, display: !displayOne
                                     ? 'none' : 'flex', justifyContent: 'space-between', alignItems: 'center'
@@ -182,6 +188,7 @@
                                 </div>
 
                             </div>
+                            <span style={{ fontSize: 13, color: '#eb1700' }} id='span1' >{ET1}</span>
 
                         </antd.Col>
 
@@ -190,12 +197,12 @@
 
                             <div style={{ display: displayTwo ? 'none' : 'flex', }}>
                                 <input style={{ width: '60%', height: 30, paddingLeft: 10, borderWidth: 1, display: 'inline' }}
-                                    value={playerTwoName} onChange={e => { setPlayerTwoName(e.target.value), setError2(false) }} />
+                                    value={playerTwoName} onChange={e => { setPlayerTwoName(e.target.value), setError2(false) }} onKeyDown={(e) => handleKey2(e)} />
                                 <button style={{ width: '25%', fontSize: 15, marginLeft: 15 }} disabled={playerTwoName.length > 0 && !Loading2 && !error2 ?
                                     false : true} onClick={submit2}
                                 >Submit <i className="fa fa-spinner fa-spin fa-1x" style={{ display: Loading2 ? 'inline' : 'none' }}></i></button>
                             </div>
-                            <span style={{ fontSize: 13, color: '#eb1700', display: error2 ? 'block' : 'none' }} id='span1' >{ET2}</span>
+                            
 
                             <div style={{
                                 width: '90%', backgroundColor: 'rgb(200,200,200)', padding: 20, display: !displayTwo
@@ -214,6 +221,7 @@
                                     <img src={'./close.png'} style={{ width: 42, height: 42 }} />
                                 </div>
                             </div>
+                            <span style={{ fontSize: 13, color: '#eb1700' }} id='span1' >{ET2}</span>
                         </antd.Col>
                     </antd.Row>
 

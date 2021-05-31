@@ -7,7 +7,6 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./index.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.0/antd.min.css"
         integrity="sha512-qpAyFUbpWTIBTmcBhcz3V/kae89kv5QNW57JpO4dCJf8jLOnCkvsKu34qWrm1rUwv9t17FtREmCleEKaQX6TTQ=="
@@ -63,11 +62,11 @@
 
             let p = useRef(1)
 
-            changeNumber = (number) => {
+            const changeNumber = (number) => {
                 return (number || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
             }
 
-            getData = (url) => {
+            const getData = (url) => {
                 setLoading(true)
                 if (window.location.href.split('?select=')[1]) {
                     let arr = select
@@ -92,6 +91,7 @@
 
                     }).catch(error => {
                         setShow(true)
+                        setLoading(false)
                     })
             }
 
@@ -131,7 +131,7 @@
 
 
             // 下拉加载数据接口
-            getDataDown = () => {
+            const getDataDown = () => {
                 let tem = {}
                 for (let i = 0; i < select.length; i++) {
                     if (select[i].select) {
@@ -156,7 +156,7 @@
                 }
 
             }
-            getDataDownApi = (url) => {
+            const getDataDownApi = (url) => {
                 setLoading1(true)
                 axios.get(url)
                     .then(res => {
@@ -170,13 +170,14 @@
                         }
                     }).catch(error => {
                         setShow(true)
+                        setLoading1(false)
                     })
                 p.current = 1
 
             }
 
 
-            changeData = (item) => {
+            const changeData = (item) => {
                 var valiable = window.location.href.split('?')[0] + `?select=${item.name}`
                 window.history.pushState({}, 0, valiable);
                 let arr = select
@@ -189,6 +190,7 @@
                 }
                 setSelect([...arr])
                 setData([])
+                setPage(1)
                 switch (item.name) {
                     case 'All':
                         return getData(`https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories&page=${1}`)
@@ -208,7 +210,7 @@
             }
 
             //获取滚动条当前的位置
-            getScrollTop = () => {
+            const getScrollTop = () => {
                 var scrollTop = 0;
                 if (document.documentElement && document.documentElement.scrollTop) {
                     scrollTop = document.documentElement.scrollTop;
@@ -220,7 +222,7 @@
             };
 
             //获取当前可是范围的高度
-            getClientHeight = () => {
+            const getClientHeight = () => {
                 var clientHeight = 0;
                 if (document.body.clientHeight && document.documentElement.clientHeight) {
                     clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
@@ -232,7 +234,7 @@
             };
 
             //获取文档完整的高度
-            getScrollHeight = () => {
+            const getScrollHeight = () => {
                 return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
             };
 
@@ -261,7 +263,7 @@
                         {
                             data.map((item, index) => {
                                 return (
-                                    <antd.Col style={{ width: '100%', padding: '10px 5px', margin: 0 }} key={index} lg={6} md={8} sm={12} >
+                                    <antd.Col style={{ width: '100%', padding: '10px 5px', margin: 0 }} key={index} lg={6} md={8} sm={12} xs={12} >
                                         <div style={{ textAlign: 'center', backgroundColor: 'rgb(235,235,235)', padding: '20px 5px', borderRadius: 3, }} >
                                             <span style={{ fontWeight: '500', fontSize: 18, display: 'block', marginBottom: 10 }} >#{index + 1}</span>
                                             <div>
