@@ -83,7 +83,7 @@
             </div>
 
             <!-- 分页器 -->
-            <nav aria-label="Page navigation example" style="text-align: center; margin-left: calc((100% - 280px) / 2); margin-top: 25px;">
+            <nav aria-label="Page navigation example" style="text-align: center; margin-left: calc((100% - 170px) / 2); margin-top: 25px;">
                 <ul class="pagination" id='nav'>
                 </ul>
             </nav>
@@ -130,7 +130,7 @@
         $(document).ready(function () {
 
 
-            var pagerIndex = parseInt(window.location.href.split('&page=')[1])
+            var pagerIndex = parseInt(window.location.href.split('?page=')[1])
             console.log(window.location.href)
 
             $('#logo').click(function () {
@@ -140,8 +140,8 @@
             // 获取数据并渲染
             function getData(page) {
                 $('#loading').css('display', 'block')
-                axios.get(`https://www.fastmock.site/mock/8e343cfe405c4fdfc706032eddc57601/new/newlist?limit=6&page=${page}`).then(res => {
-                    var data = res.data.data.list
+                axios.get(`http://mock-api.com/VnZA2Lgw.mock/list?page=${page}`).then(res => {
+                    var data = res.data.data
                     for (let i = 0; i < data.length; i++) {
                         $('#newlist').append(`
                     <a class="newItem col-lg-6 col-md-6" href='./item.html?id=${data[i].id}' >

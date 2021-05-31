@@ -298,15 +298,15 @@
                 $imgs.eq($_key).fadeIn().siblings().fadeOut();
             })
 
-            axios.get('https://www.fastmock.site/mock/8e343cfe405c4fdfc706032eddc57601/new/hotnew').then(res => {
-                for (var i = 0; i < res.data.data.list.length; i++) {
+            axios.get('http://mock-api.com/VnZA2Lgw.mock/hotnews').then(res => {
+                for (var i = 0; i < res.data.length; i++) {
                     console.log(12)
                     $('#newlist').append(`
-                    <a class="newItem col-md-3 col-sm-6" href='./item.html?id=${res.data.data.list[i].id}'>
+                    <a class="newItem col-md-3 col-sm-6" href='./item.html?id=${res.data[i].id}'>
                         <div class="newItem-imgwarppe">
-                            <img data-src="${res.data.data.list[i].imgUrl}" alt="newImag" class='lazyload'>
+                            <img data-src="${res.data[i].imgUrl}" alt="newImag" class='lazyload'>
                         </div>
-                        <span>${res.data.data.list[i].name}</span>
+                        <span>${res.data[i].name}</span>
                     </a>
                     `)
                 }
