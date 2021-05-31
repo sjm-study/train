@@ -130,7 +130,7 @@
         $(document).ready(function () {
 
 
-            var pagerIndex = parseInt(window.location.href.split('?page=')[1])
+            var pagerIndex = parseInt(window.location.href.split('&page=')[1])
             console.log(window.location.href)
 
             $('#logo').click(function () {
@@ -140,7 +140,7 @@
             // 获取数据并渲染
             function getData(page) {
                 $('#loading').css('display', 'block')
-                axios.get(`https://www.fastmock.site/mock/8e343cfe405c4fdfc706032eddc57601/new/newlist?limit=6&page${page}`).then(res => {
+                axios.get(`https://www.fastmock.site/mock/8e343cfe405c4fdfc706032eddc57601/new/newlist?limit=6&page=${page}`).then(res => {
                     var data = res.data.data.list
                     for (let i = 0; i < data.length; i++) {
                         $('#newlist').append(`

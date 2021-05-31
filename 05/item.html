@@ -120,7 +120,7 @@
             console.log(window.location.href)
             var id = window.location.href.split('id=')[1]
             console.log(id)
-            axios.get(`https://www.fastmock.site/mock/8e343cfe405c4fdfc706032eddc57601/new/item?${id}`).then(res => {
+            axios.get(`https://www.fastmock.site/mock/8e343cfe405c4fdfc706032eddc57601/new/item?id=${id}`).then(res => {
                 // var p = res.data.content.split('<br>')
                 // console.log(p)
                 // var results = ''
