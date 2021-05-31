@@ -20,14 +20,15 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-    <script src="./js/lazysizes.min.js" async=""></script>
+    <script src="./lazysizes.min.js" async=""></script>
     <title>Index</title>
 </head>
 
 <body>
     <!-- menu -->
-    <div style="background-color: rgb(215,215,215);width: 100%;" >
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%; max-width: 1200px; margin: 0 auto;">
+    <div style="background-color: rgb(215,215,215);width: 100%;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"
+            style="width: 100%; max-width: 1200px; margin: 0 auto;">
             <div style="width:100px; padding-top: 8px;">
                 <a style="display: flex;align-items: center;" href="./index.html" class="menu-left">
                     <img src="./assents/logo.png" alt="logo" style="width: 35px;height: 35px;" />
@@ -69,13 +70,19 @@
         <!-- 轮播图片 -->
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-                <img src="./assents/banner/banner1.jpg" alt="banner">
+                <img data-src="dist/banner1-orginal.jpg" data-sizes="auto" data-srcset="dist/images/banner1-576.jpg 576w,
+                dist/images/banner1-768.jpg 768w,
+                dist/images/banner1-992.jpg 992w," alt="banner" class="lazyload">
             </div>
             <div class="carousel-item">
-                <img src="./assents/banner/banner2.jpg" alt="banner">
+                <img data-src="./assents/banner/banner2.jpg" data-sizes="auto" data-srcset="dist/images/banner2-576.jpg 576w,
+                dist/images/banner2-768.jpg 768w,
+                dist/images/banner2-992.jpg 992w" alt="banner" class="lazyload">
             </div>
             <div class="carousel-item">
-                <img src="./assents/banner/banner4.jpg" alt="banner">
+                <img data-src="./assents/banner/banner4.jpg" data-sizes="auto" data-srcset="dist/images/banner4-576.jpg 576w,
+                dist/images/banner4-768.jpg 768w,
+                dist/images/banner4-992.jpg 992w" alt="banner" class="lazyload">
             </div>
         </div>
 
@@ -257,6 +264,20 @@
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 
+    <script>
+        function loadJS(u) {
+            varr = document.getElementsByTagName("script")[0],
+                s = document.createElement("script");
+            s.src = u;
+            r.parentNode.insertBefore(s, r);
+        }
+        if (!window.HTMLPictureElement) {
+            document.createElement('picture');
+            loadJS("respimage.min.js");
+        }
+    </script>
+    <script src="https: //afarkas.github.io/lazysizes/plugins/bgset/ls.bgset.min.js"></script> -->
 
     <script>
         $(document).ready(function () {

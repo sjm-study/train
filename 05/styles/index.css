@@ -4,6 +4,7 @@ html, body {
     height: 100%;
     width: 100%;
 }
+img[data-sizes="auto"] { display: block; width: 100%; }
 
 a {
     text-decoration: none;

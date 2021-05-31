@@ -1,31 +1,30 @@
 var gulp = require('gulp')
 var responsive = require('gulp-responsive')
-console.log('success')
 gulp.task('default', function () {
     return gulp
-        .src('assents/banner/*.{png,jpg}')
+        .src('images/*.{png,jpg}')
         .pipe(
             responsive({
                 '*'
                     : [
                         {
-                            width: 90,
+                            width: 576,
                             quality: 50,
                             rename: {
-                                suffix: '-90'
+                                suffix: '-576'
                             }
                         },
                         {
-                            width: 180,
+                            width: 768,
                             quality: 75,
                             rename: {
-                                suffix: '-180'
+                                suffix: '-768'
                             }
                         },
                         {
-                            width: 360,
+                            width: 992,
                             rename: {
-                                suffix: '-360'
+                                suffix: '-992'
                             },
                         },
                         {
@@ -38,7 +37,6 @@ gulp.task('default', function () {
                 errorOnEnlargement: false,
                 skipOnEnlargement: true,
                 withoutEnlargement: true
-                
             })
         )
         .pipe(gulp.dest('dist/images'))
