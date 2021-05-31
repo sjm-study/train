@@ -83,7 +83,7 @@
             </div>
 
             <!-- 分页器 -->
-            <nav aria-label="Page navigation example" style="text-align: center; margin-left: calc((100% - 170px) / 2); margin-top: 25px;">
+            <nav aria-label="Page navigation example" style="text-align: center; margin-left: calc((100% - 280px) / 2); margin-top: 25px;">
                 <ul class="pagination" id='nav'>
                 </ul>
             </nav>
@@ -140,8 +140,8 @@
             // 获取数据并渲染
             function getData(page) {
                 $('#loading').css('display', 'block')
-                axios.get(`http://mock-api.com/VnZA2Lgw.mock/list?page=${page}`).then(res => {
-                    var data = res.data.data
+                axios.get(`https://www.fastmock.site/mock/8e343cfe405c4fdfc706032eddc57601/new/newlist?limit=6&page${page}`).then(res => {
+                    var data = res.data.data.list
                     for (let i = 0; i < data.length; i++) {
                         $('#newlist').append(`
                     <a class="newItem col-lg-6 col-md-6" href='./item.html?id=${data[i].id}' >
@@ -197,7 +197,7 @@
                     getData(pagerIndex - 1)
                     pagerIndex -= 1
                     // localStorage.page = JSON.stringify(pagerIndex)
-                    var valiable = window.location.href.split('?')[0] + `?page=${pagerIndex}`
+                    var valiable = window.location.href.split('?')[0] + `?limit=6&page=${pagerIndex}`
                     window.history.pushState({}, 0, valiable);
                 }
             })
@@ -212,7 +212,7 @@
                     pagerIndex++
                     // localStorage.page = JSON.stringify(pagerIndex)
                     console.log(window.location)
-                    var valiable = window.location.href.split('?')[0] + `?page=${pagerIndex}`
+                    var valiable = window.location.href.split('?')[0] + `?limit=6&page=${pagerIndex}`
                     window.history.pushState({}, 0, valiable);
                 }
             })
@@ -224,7 +224,7 @@
                 if ($(this).index() !== 0 && $(this).index() + 1 !== $('#nav').children().length) {
                     pagerIndex = $(this).index()
                     // localStorage.page = JSON.stringify(pagerIndex)
-                    var valiable = window.location.href.split('?')[0] + `?page=${pagerIndex}`
+                    var valiable = window.location.href.split('?')[0] + `?limit=6&page=${pagerIndex}`
                     window.history.pushState({}, 0, valiable);
                     // $('div#pager div').eq(pagerIndex).addClass('active-pager').siblings().removeClass('active-pager')
                     $('div#newlist .newItem').remove()
