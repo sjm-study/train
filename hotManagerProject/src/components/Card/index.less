@@ -34,5 +34,42 @@
             font-size: 14px;
             margin-left: 5px;
         }
+    }    
+}
+.media576info {
+    display: none;
+}
+
+@media screen and (max-width: 576px) {
+    .warpper {
+        display: flex;
+        flex-direction: row;
+
+        div img {
+            width: 129px;
+            height: 134px;
+        }
+
+        .indexText {
+            display: none;
+        }
+        .name {
+            display: none;
+        }
+    }
+    .media576info {
+        display: block;
+        span:nth-child(1) {
+            font-weight: 500;
+            font-size: 18px;
+            display: block;
+        }
+        span:nth-child(2) {
+            font-size: 15;
+            // margin: 10px auto;
+            display: block;
+            font-weight: 600;
+            margin-left: 10px;
+        }
     }
 }

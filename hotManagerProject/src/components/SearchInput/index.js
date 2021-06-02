@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Row, Col } from 'antd'
 
 import ClosePng from '@/assents/close.png'
 
@@ -8,15 +9,15 @@ import styles from './index.less'
 
 function Index(props) {
 
-    const [playName,setPlayName] =useState('')
+    const [playName, setPlayName] = useState('')
     const [loading, setLoading] = useState(false)
-    const [error,setError] = useState(false)
-    const [errrorText,setErrorText] = useState('')
-    const [playImg,setPlayImg] = useState('')
-    const [display,setDisplay] = useState(false)
+    const [error, setError] = useState(false)
+    const [errrorText, setErrorText] = useState('')
+    const [playImg, setPlayImg] = useState('')
+    const [display, setDisplay] = useState(false)
 
     const submit = () => {
-        if (props.otherName&&props.otherName  === playName) {
+        if (props.otherName && props.otherName === playName) {
             setErrorText('playOneName is same of platTwoName!!')
         } else {
             setLoading(true)
@@ -30,7 +31,7 @@ function Index(props) {
                     setDisplay(true)
                     // $('#img1').addClass('lazyload')
                     setErrorText('')
-                    props.getSuccessData&&props.getSuccessData(playName)
+                    props.getSuccessData && props.getSuccessData(playName)
                 }
                 setLoading(false)
             }).catch(error => {
@@ -49,31 +50,33 @@ function Index(props) {
     }
 
     return (
-        <>
+        <div>
             <div style={{ display: display ? 'none' : 'flex' }}>
-                <input className={styles.input}
-                    value={playName} onChange={e => { setPlayName(e.target.value), setError(false) }} onKeyDown={(e) => handleKey(e)} />
-                <button className={styles.button} disabled={playName.length > 0 && !loading && !error ?
-                    false : true}
-                    onClick={submit}
-                >Submit <i className="fa fa-spinner fa-spin fa-1x" style={{ display: loading ? 'inline' : 'none' }}></i></button>
+                <div style={{ width: '100%' }} className={styles.wrapper} >
+                    <input className={styles.input}
+                        value={playName} onChange={e => { setPlayName(e.target.value), setError(false) }} onKeyDown={(e) => handleKey(e)} />
+                    <button className={styles.button} disabled={playName.length > 0 && !loading && !error ?
+                        false : true}
+                        onClick={submit}
+                    >Submit <i className="fa fa-spinner fa-spin fa-1x" style={{ display: loading ? 'inline' : 'none' }}></i></button>
+                </div>
 
             </div>
             <div style={{
-                width: '90%', backgroundColor: 'rgb(200,200,200)', display: !display
-                    ? 'none' : 'flex', 
+                backgroundColor: 'rgb(200,200,200)', display: !display
+                    ? 'none' : 'flex',
             }} className={styles.infoWrapper}>
                 <div style={{ display: 'flex', alignItems: 'center' }} id='img-left'>
                     <img src={playImg} alt='logoImg' id='img1' />
                     <span >{playName}</span>
                 </div>
-                <div onClick={() => { setDisplay(false), setPlayName(''), props.getSuccessData&&props.getSuccessData('') }}>
+                <div onClick={() => { setDisplay(false), setPlayName(''), props.getSuccessData && props.getSuccessData('') }}>
                     <img src={ClosePng} style={{ width: 36, height: 36 }} />
                 </div>
 
             </div>
             <span style={{ fontSize: 13, color: '#eb1700' }} >{errrorText}</span>
-        </>
+        </div>
     )
 }
 

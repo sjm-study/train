@@ -27,22 +27,22 @@ function Index() {
         <div>
             <p className={styles.title} >Instructions</p>
             <Row style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <Col className={styles.small} md={8} sm={12} xs={12}>
+                <Col className={styles.small} md={8} sm={12} xs={24}>
                     <span style={{ display: 'block', fontSize: 18 }}>Enter two Github:</span>
                     <i className='fa fa-users' style={{
                         color: 'rgb(255, 191, 116)', backgroundColor: '#eee'
                     }}></i>
                 </Col>
-                <Col className={styles.small} md={8} sm={12} xs={12}>
+                <Col className={styles.small} md={8} sm={12} xs={24}>
                     <span style={{ display: 'block', fontSize: 18 }}>Battle:</span>
                     <i className='fa fa-fighter-jet' style={{
                         color: 'gray', backgroundColor: '#eee'
                     }}></i>
                 </Col>
-                <Col className={styles.small} md={8} sm={12} xs={12}>
+                <Col className={styles.small} md={8} sm={12} xs={24}>
                     <span style={{ display: 'block', fontSize: 18 }}>See the winner:</span>
                     <i className='fa fa-trophy' style={{
-                        color: 'rgb(244,234,47)', backgroundColor: '#eee'
+                        color: 'rgb(244,234,47)', backgroundColor: '#eee', fontSize:100
                     }}></i>
                 </Col>
             </Row>
@@ -65,7 +65,7 @@ function Index() {
                 width: '100%', justifyContent: 'center', marginTop: 50,
                 display: playerOneName.length > 0 && playerTwoName.length > 0 ? 'flex' : 'none',
             }}>
-                <button style={{ fontSize: 18, width: 200, paddingTop: 10, paddingBottom: 10, textAlign: 'center' }}
+                <button style={{ fontSize: 15, width: 180, paddingTop: 8, paddingBottom: 8, textAlign: 'center' }}
                     onClick={submitData}
                 >Battle</button>
             </div>

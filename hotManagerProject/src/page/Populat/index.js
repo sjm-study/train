@@ -39,29 +39,29 @@ function Index(props) {
     const p = useRef(1);
 
     // 获取滚动条当前的位置
-    // const getScrollTop = () => {
-    //     let scrollTop = 0;
-    //     if (document.documentElement && document.documentElement.scrollTop) {
-    //         scrollTop = document.documentElement.scrollTop;
-    //     } else if (document.body) {
-    //         scrollTop = document.body.scrollTop;
-    //     }
-    //     return scrollTop;
-    // };
+    const getScrollTop = () => {
+        let scrollTop = 0;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+        } else if (document.body) {
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    };
 
     // 获取当前可是范围的高度
-    // const getClientHeight = () => {
-    //     let clientHeight = 0;
-    //     if (document.body.clientHeight && document.documentElement.clientHeight) {
-    //         clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
-    //     } else {
-    //         clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
-    //     }
-    //     return clientHeight;
-    // };
+    const getClientHeight = () => {
+        let clientHeight = 0;
+        if (document.body.clientHeight && document.documentElement.clientHeight) {
+            clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+        } else {
+            clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+        }
+        return clientHeight;
+    };
 
     // 获取文档完整的高度
-    // const getScrollHeight = () => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    const getScrollHeight = () => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
 
     const getData = (url) => {
         setLoading(true);
@@ -91,16 +91,14 @@ function Index(props) {
     };
 
     useEffect(() => {
-        // function lister() {
-        //     if (getScrollTop() + getClientHeight() + 30 >= getScrollHeight() && p.current === 1) {
-        //         // 要执行的方法
-        //         console.log('下拉加载');
-        //         p.current = 0;
-        //         console.log('修改lock为0');
-        //         getDataDown();
-        //     }
-        // }
-        // window.addEventListener('scroll', lister)
+        function lister() {
+            if (getScrollTop() + getClientHeight() + 30 >= getScrollHeight() && p.current === 1) {
+                // 要执行的方法
+                p.current = 0;
+                getDataDown();
+            }
+        }
+        window.addEventListener('scroll', lister)
         if (window.location.href.split('?select=')[1]) {
             switch (window.location.href.split('?select=')[1]) {
                 case 'All':
@@ -121,7 +119,7 @@ function Index(props) {
             getData('https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories');
         }
 
-        // return () => window.removeEventListener('scroll', lister)
+        return () => window.removeEventListener('scroll', lister)
     }, []);
 
     // 下拉加载数据接口
@@ -134,13 +132,13 @@ function Index(props) {
                     setData((pre) => [...pre, ...res.data.items]);
                     setLoading1(false);
                     setPage((pre) => pre + 1);
+                    p.current = 1;
                 } else {
 
                 }
             }).catch(() => {
                 setShow(true);
             });
-        p.current = 1;
     };
     const getDataDown = () => {
         let tem = {};
@@ -217,21 +215,21 @@ function Index(props) {
             </div>
 
             <Row style={{
-                width: '100%', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', paddingLeft: 10, paddingRight: 10,
+                width: '100%', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', 
             }}
             >
 
                 {
                     data.map((item, index) => (
-                        <Col style={{ width: '100%', padding: '10px 5px', margin: 0 }} key={index} lg={6} md={8} sm={12}>
+                        <Col style={{ width: '100%', padding: '10px 5px', margin: 0 }} key={index} lg={6} md={8} sm={12} xs={24} >
                             <Card item={item} index={index} />
                         </Col>
                     ))
                 }
             </Row>
-            <div style={{ textAlign: 'center', display: !loading1 && !loading ? 'block' : 'none' }}>
+            {/* <div style={{ textAlign: 'center', display: !loading1 && !loading ? 'block' : 'none' }}>
                 <button onClick={getDataDown} style={{ fontSize: 15 }}>加载更多</button>
-            </div>
+            </div> */}
             <div style={{ textAlign: 'center', display: loading1 ? 'block' : 'none' }}>
                 <i className="fa fa-spinner fa-spin fa-2x" />
             </div>

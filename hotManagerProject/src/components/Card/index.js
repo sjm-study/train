@@ -21,6 +21,10 @@ function Index(props) {
             </div>
             <span className={styles.name} >{item.owner.login}</span>
             <div className={styles.infoWrapper} >
+                <div className={styles.media576info}>
+                    <span >#{index + 1}</span>
+                    <span>{item.owner.login}</span>
+                </div>
                 <div>
                     <i className="fa fa-user" style={{ color: 'rgb(255,191,116)', paddingLeft: 2 }} />
                     <span>{item.owner.login}</span>

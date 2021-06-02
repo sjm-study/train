@@ -43,7 +43,7 @@ const Index = (props) => {
     }
 
     return (
-        <div className={theme === 'light' ? styles.light : styles.dark}>
+        <div className={theme === 'light' ? styles.light : styles.dark} style={{padding: '0 15px 0 15px'}}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                 <div className={styles.menu}>
                     <a

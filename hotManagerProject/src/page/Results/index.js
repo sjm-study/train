@@ -12,7 +12,7 @@ function Index() {
 
     const [error, setError] = useState(false)
 
-    const [text,setText] = useState('')
+    const [text, setText] = useState('')
 
     useEffect(() => {
         const route = router()
@@ -23,8 +23,8 @@ function Index() {
         if (route.query.play1 && route.query.play2) {
             axios.get(`https://api.github.com/users/${route.query.play1}`).then(res => {
                 setPlayOne(res.data)
-            }).catch(error => { 
-                setError(true) 
+            }).catch(error => {
+                setError(true)
                 setText('API rate limit')
             })
             axios.get(`https://api.github.com/users/${route.query.play2}`).then(res => setPlayTwo(res.data)).catch(error => { setText('API rate limit'), setError(true) })
@@ -56,58 +56,64 @@ function Index() {
             {
                 !error ?
                     <Row className={styles.warpper} >
-                        <Col style={{ width: '100%', padding: '10px 5px', maxWidth: 400 }} sm={12} xs={12}  >
+                        <Col style={{ width: '100%', padding: '10px 5px' }} sm={12} xs={24}>
                             <div className={styles.inner} >
-                                <span style={{ fontWeight: '500', fontSize: 18, display: 'block', marginBottom: 10 }} >{Results(playOne.public_repos, playTwo.public_repos)}</span>
+                                <span className={styles.resultS} >{Results(playOne.public_repos, playTwo.public_repos)}</span>
                                 <div>
-                                    <img src={playOne.avatar_url} alt="avatar_url" style={{ width: 110, height: 'auto' }} />
+                                    <img src={playOne.avatar_url} alt="avatar_url" />
                                 </div>
-                                <span style={{ color: '#000', fontSize: 15, margin: '10px 0', display: 'block', fontWeight: '600' }} >Scores: {playOne.public_repos}</span>
-                                <span style={{ color: '#1890ff', fontSize: 18, margin: '10px 0', display: 'block', fontWeight: '600' }} >{playOne.name}</span>
-                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                    <div style={{ width: '70%', textAlign: 'left' }}>
-                                        <span className='fa fa-user' style={{ color: 'rgb(255,191,116)', marginLeft: 2, }}></span>
-                                        <span style={{ fontSize: 14, fontWeight: '600', marginLeft: 8 }} >{playOne.location}</span>
-                                    </div>
-                                    <div style={{ width: '70%', textAlign: 'left' }}>
-                                        <span className='fa fa-star' style={{ color: 'rgb(255,215,0)' }}></span>
-                                        <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playOne.followers)}</span>
-                                    </div>
-                                    <div style={{ width: '70%', textAlign: 'left' }}>
-                                        <span className='fa fa-share-alt fa-rotate-270' style={{ color: 'rgb(147,201,242)' }}></span>
-                                        <span style={{ fontSize: 14, marginLeft: 7 }} >{changeNumber(playOne.following)}</span>
-                                    </div>
-                                    <div style={{ width: '70%', textAlign: 'left' }}>
-                                        <span className='fa fa-warning' style={{ color: 'rgb(240,144,151)' }}></span>
-                                        <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playOne.public_repos)}</span>
+                                <div className={styles.info}>
+                                    <span className={styles.result576} >{Results(playOne.public_repos, playTwo.public_repos)}</span>
+                                    <span className={styles.scores} >Scores: {playOne.public_repos}</span>
+                                    <span className={styles.name} >{playOne.name}</span>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} className={styles.iconInfo}>
+                                        <div>
+                                            <span className='fa fa-user' style={{ color: 'rgb(255,191,116)', marginLeft: 2, }}></span>
+                                            <span style={{ fontSize: 14, fontWeight: '600', marginLeft: 8 }} >{playOne.location}</span>
+                                        </div>
+                                        <div >
+                                            <span className='fa fa-star' style={{ color: 'rgb(255,215,0)' }}></span>
+                                            <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playOne.followers)}</span>
+                                        </div>
+                                        <div >
+                                            <span className='fa fa-share-alt fa-rotate-270' style={{ color: 'rgb(147,201,242)' }}></span>
+                                            <span style={{ fontSize: 14, marginLeft: 7 }} >{changeNumber(playOne.following)}</span>
+                                        </div>
+                                        <div >
+                                            <span className='fa fa-warning' style={{ color: 'rgb(240,144,151)' }}></span>
+                                            <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playOne.public_repos)}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </Col>
-                        <Col style={{ width: '100%', padding: '10px 5px', maxWidth: 400 }} sm={12} xs={12}>
-                            <div className={styles.inner} > 
-                                <span style={{ fontWeight: '500', fontSize: 18, display: 'block', marginBottom: 10 }} >{Results(playTwo.public_repos, playOne.public_repos)}</span>
+                        <Col style={{ width: '100%', padding: '10px 5px' }} sm={12} xs={24}>
+                            <div className={styles.inner} >
+                                <span className={styles.resultS} >{Results(playTwo.public_repos, playOne.public_repos)}</span>
                                 <div>
-                                    <img src={playTwo.avatar_url} alt="avatar_url" style={{ width: 110, height: 'auto' }} />
+                                    <img src={playTwo.avatar_url} alt="avatar_url" />
                                 </div>
-                                <span style={{ color: '#000', fontSize: 15, margin: '10px 0', display: 'block', fontWeight: '600' }} >Scores: {playTwo.public_repos}</span>
-                                <span style={{ color: '#1890ff', fontSize: 18, margin: '10px 0', display: 'block', fontWeight: '600' }} >{playTwo.name}</span>
-                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                    <div style={{ width: '70%', textAlign: 'left' }}>
-                                        <span className='fa fa-user' style={{ color: 'rgb(255,191,116)', marginLeft: 2, }}></span>
-                                        <span style={{ fontSize: 14, fontWeight: '600', marginLeft: 8 }} >{playTwo.location}</span>
-                                    </div>
-                                    <div style={{ width: '70%', textAlign: 'left' }}>
-                                        <span className='fa fa-star' style={{ color: 'rgb(255,215,0)' }}></span>
-                                        <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playTwo.followers)}</span>
-                                    </div>
-                                    <div style={{ width: '70%', textAlign: 'left' }}>
-                                        <span className='fa fa-share-alt fa-rotate-270' style={{ color: 'rgb(147,201,242)' }}></span>
-                                        <span style={{ fontSize: 14, marginLeft: 7 }} >{changeNumber(playTwo.following)}</span>
-                                    </div>
-                                    <div style={{ width: '70%', textAlign: 'left' }}>
-                                        <span className='fa fa-warning' style={{ color: 'rgb(240,144,151)' }}></span>
-                                        <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playTwo.public_repos)}</span>
+                                <div className={styles.info}>
+                                    <span className={styles.result576} >{Results(playTwo.public_repos, playOne.public_repos)}</span>
+                                    <span className={styles.scores} >Scores: {playTwo.public_repos}</span>
+                                    <span className={styles.name} >{playTwo.name}</span>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <div style={{ width: '70%', textAlign: 'left' }}>
+                                            <span className='fa fa-user' style={{ color: 'rgb(255,191,116)', marginLeft: 2, }}></span>
+                                            <span style={{ fontSize: 14, fontWeight: '600', marginLeft: 8 }} >{playTwo.location}</span>
+                                        </div>
+                                        <div style={{ width: '70%', textAlign: 'left' }}>
+                                            <span className='fa fa-star' style={{ color: 'rgb(255,215,0)' }}></span>
+                                            <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playTwo.followers)}</span>
+                                        </div>
+                                        <div style={{ width: '70%', textAlign: 'left' }}>
+                                            <span className='fa fa-share-alt fa-rotate-270' style={{ color: 'rgb(147,201,242)' }}></span>
+                                            <span style={{ fontSize: 14, marginLeft: 7 }} >{changeNumber(playTwo.following)}</span>
+                                        </div>
+                                        <div style={{ width: '70%', textAlign: 'left' }}>
+                                            <span className='fa fa-warning' style={{ color: 'rgb(240,144,151)' }}></span>
+                                            <span style={{ fontSize: 14, marginLeft: 5 }} >{changeNumber(playTwo.public_repos)}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +124,7 @@ function Index() {
                         message={text}
                         type="error"
                         closable
-                        style={{ marginTop:20 }}
+                        style={{ marginTop: 20 }}
                     />
             }
 

@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-// const TerserPlugin = require('terser-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 module.exports = function (env, argv) {
     const isEnvDevelopment = argv.mode === 'development' || !argv.mode;
     const isEnvProduction = argv.mode === 'production';
@@ -80,10 +80,10 @@ module.exports = function (env, argv) {
         },
         optimization: {
             minimize: true,
-            // minimizer: [
-                // new TerserPlugin()
-                // new OptimizeCssAssetsPlugin()
-            // ],
+            minimizer: [
+                new TerserPlugin(),
+                new OptimizeCssAssetsPlugin()
+            ],
             splitChunks: {
                 chunks: 'all',
                 cacheGroups: {
@@ -125,7 +125,8 @@ module.exports = function (env, argv) {
             new MiniCssExtractPlugin({
                 filename: '[name].[contenthash:8].css',
                 chunkFilename: '[name].[contenthash:8].css'
-            })
+            }),
+            // new OptimizeCssAssetsPlugin()
         ],
         resolve: {
             alias: {
