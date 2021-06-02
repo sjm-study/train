@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import PoPular from '@/page/Populat';
-// import Battle from '@/page/Battle'
+import Battle from '@/page/Battle'
 // import Results from '@/page/Results/index'
 import { router } from '@/untils/router'
 import Loading from '@/untils/lazy'
@@ -52,8 +52,9 @@ const Index = (props) => {
                     >PoPular
                 </a>
                     <a
-                        href="#/battle"
+                        // href="#/battle"
                         className={route.page === 'battle' ? styles.active : ''}
+                        onClick={() => props.history.push('/battle')}
                     >Battle
                 </a>
                 </div>
@@ -81,4 +82,4 @@ const Index = (props) => {
     )
 
 };
-ReactDOM.render(<Index />, document.getElementById('root'))
+export default Index
