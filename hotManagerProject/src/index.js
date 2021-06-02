@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import PoPular from '@/page/Populat';
 // import Battle from '@/page/Battle'
@@ -20,9 +19,11 @@ const Index = (props) => {
     const [route, setRoute] = useState({ page: '', param: '' })
     const [theme, setTheme] = useState('light')
 
+    const [battle, setBattle] = useState('')
 
     useEffect(() => {
         hashchange()
+
         window.addEventListener('hashchange', hashchange)
 
         return () => window.removeEventListener('hashchange', hashchange)
@@ -42,7 +43,7 @@ const Index = (props) => {
     }
 
     return (
-        <div className={theme === 'light' ? styles.light : styles.dark} style={{ padding: '0 15px 0 15px' }}>
+        <div className={theme === 'light' ? styles.light : styles.dark} style={{padding: '0 15px 0 15px'}}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                 <div className={styles.menu}>
                     <a
@@ -60,8 +61,7 @@ const Index = (props) => {
                     <i className={'fa fa-exchange'} style={{ fontSize: 25, marginTop: 20 }} onClick={changeTheme}></i>
                 </div>
             </div>
-            {/* <Route path='/' component={PoPular} />
-            <Route path='/battle' component={Battle} /> */}
+
             {
                 route.page === '' && <PoPular theme={theme} />
             }
@@ -80,4 +80,5 @@ const Index = (props) => {
     )
 
 };
-ReactDOM.render(<Index />, document.getElementById('root'))
+
+ReactDOM.render(<Index />, document.getElementById('root'));
