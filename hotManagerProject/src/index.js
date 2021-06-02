@@ -19,7 +19,6 @@ const Index = (props) => {
     const [route, setRoute] = useState({ page: '', param: '' })
     const [theme, setTheme] = useState('light')
 
-    const [battle, setBattle] = useState('')
 
     useEffect(() => {
         hashchange()
