@@ -47,13 +47,14 @@ const Index = (props) => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                 <div className={styles.menu}>
                     <a
-                        href="#"
+                        href="#/"
                         className={route.page === '' ? styles.active : ''}
                     >PoPular
                 </a>
                     <a
-                        href="#/battle"
+                        // href="#/battle"
                         className={route.page === 'battle' ? styles.active : ''}
+                        onClick={()=>window.location.href='#/battle'}
                     >Battle
                 </a>
                 </div>

@@ -68,7 +68,7 @@ function Index(props) {
         if (window.location.href.split('?select=')[1]) {
             const arr = select;
             for (let i = 0; i < arr.length; i = i + 1) {
-                if (arr[i].name === window.location.href.split('?select=')[1]) {
+                if (arr[i].name === window.location.href.split('?select=')[1].split('#')[0]) {
                     arr[i].select = true;
                 } else {
                     arr[i].select = false;
@@ -100,7 +100,7 @@ function Index(props) {
         }
         window.addEventListener('scroll', lister)
         if (window.location.href.split('?select=')[1]) {
-            switch (window.location.href.split('?select=')[1]) {
+            switch (window.location.href.split('?select=')[1].split('#')[0]) {
                 case 'All':
                     return getData(`https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories&page=${page}`);
                 case 'Javascript':
@@ -166,6 +166,7 @@ function Index(props) {
 
     const changeData = (item) => {
         const valiable = `${window.location.href.split('?')[0]}?select=${item.name}`;
+        console.log(valiable)
         window.history.pushState({}, 0, valiable);
         const arr = select;
         for (const iterator of arr) {
@@ -201,7 +202,7 @@ function Index(props) {
                 {
                     select.map((item, index) => (
                         <a
-                            className={item.select ? props.theme==='light'? styles.active_dark: styles.active_light : ''}
+                            className={item.select ? props.theme === 'light' ? styles.active_dark : styles.active_light : ''}
                             key={index}
                             onClick={() => changeData(item)}
                             href="#"
@@ -215,7 +216,7 @@ function Index(props) {
             </div>
 
             <Row style={{
-                width: '100%', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', 
+                width: '100%', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around',
             }}
             >
 
