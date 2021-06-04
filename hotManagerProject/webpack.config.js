@@ -20,12 +20,14 @@ module.exports = function (env, argv) {
                     test: /\.js$/,
                     exclude: /node_modules/,
                     use: 'babel-loader'
-                }, {
+                },
+                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
                     enforce: 'pre',
                     use: 'eslint-loader'
-                }, {
+                }, 
+                {
                     test: /\.css$/,
                     include: [path.resolve(__dirname, 'src/styles'), /node_modules/],
                     use: ['style-loader', 'css-loader']

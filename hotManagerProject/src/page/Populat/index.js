@@ -4,7 +4,7 @@ import { Row, Col, Alert, message } from "antd";
 import Card from "@/components/Card/index";
 import styles from "./index.less";
 
-function Index(props) {
+function Index() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
@@ -97,6 +97,7 @@ function Index(props) {
       })
       .catch(() => {
         setShow(true);
+        setLoading(false);
       });
   };
 
@@ -130,27 +131,27 @@ function Index(props) {
       case "All":
         return getDataDownApi(
           `https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories&page=${page +
-            1}`
+          1}`
         );
       case "Javascript":
         return getDataDownApi(
           `https://api.github.com/search/repositories?q=stars:%3E1+language:javascript&sort=stars&order=desc&type=Repositories&page=${page +
-            1}`
+          1}`
         );
       case "Ruby":
         return getDataDownApi(
           `https://api.github.com/search/repositories?q=stars:%3E1+language:ruby&sort=stars&order=desc&type=Repositories&page=${page +
-            1}`
+          1}`
         );
       case "Java":
         return getDataDownApi(
           `https://api.github.com/search/repositories?q=stars:%3E1+language:java&sort=stars&order=desc&type=Repositories&page=${page +
-            1}`
+          1}`
         );
       case "CSS":
         return getDataDownApi(
           `https://api.github.com/search/repositories?q=stars:%3E1+language:css&sort=stars&order=desc&type=Repositories&page=${page +
-            1}`
+          1}`
         );
 
       default:
@@ -205,10 +206,10 @@ function Index(props) {
     return () => window.removeEventListener("scroll", lister);
   }, []);
 
-  const changeData = item => {
-    const valiable = `${window.location.href.split("?")[0]}?select=${
-      item.name
-    }`;
+  const changeData = (event, item) => {
+    event.preventDefault()
+    const valiable = `${window.location.href.split("?")[0]}?select=${item.name
+      }`;
     console.log(valiable);
     window.history.pushState({}, 0, valiable);
     const arr = select;
@@ -259,13 +260,13 @@ function Index(props) {
           <a
             className={
               item.select
-                ? props.theme === "light"
-                  ? styles.active_dark
-                  : styles.active_light
+                ?
+                styles.active_light
                 : ""
             }
             key={index}
-            onClick={() => changeData(item)}
+            onClick={(event) => changeData(event,item)}
+            // role='button'
             href="#"
           >
             {item.name}

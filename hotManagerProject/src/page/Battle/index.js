@@ -23,8 +23,8 @@ function Index() {
     <div>
       <p className={styles.title}>Instructions</p>
       <Row style={{ display: "flex", justifyContent: "space-around" }}>
-        <Col className={styles.small} md={8} sm={12} xs={24}>
-          <span style={{ display: "block", fontSize: 18 }}>
+        <Col className={styles.small} md={8} sm={12} xs={8}>
+          <span>
             Enter two Github:
           </span>
           <i
@@ -35,8 +35,8 @@ function Index() {
             }}
           />
         </Col>
-        <Col className={styles.small} md={8} sm={12} xs={24}>
-          <span style={{ display: "block", fontSize: 18 }}>Battle:</span>
+        <Col className={styles.small} md={8} sm={12} xs={8}>
+          <span>Battle:</span>
           <i
             className="fa fa-fighter-jet"
             style={{
@@ -45,27 +45,26 @@ function Index() {
             }}
           />
         </Col>
-        <Col className={styles.small} md={8} sm={12} xs={24}>
-          <span style={{ display: "block", fontSize: 18 }}>
+        <Col className={styles.small} md={8} sm={12} xs={8}>
+          <span>
             See the winner:
           </span>
           <i
-            className="fa fa-trophy"
+            className={`fa fa-trophy ${styles.champ}`}
             style={{
               color: "rgb(244,234,47)",
-              backgroundColor: "#eee",
-              fontSize: 100
+              backgroundColor: "#eee"
             }}
           />
         </Col>
       </Row>
 
-      <p style={{ textAlign: "center", fontSize: 24, fontWeight: "bold" }}>
+      <p className={styles.lable}>
         Players
       </p>
       <Row style={{ display: "flex", width: "100%" }}>
         <Col style={{ width: "100%", paddingTop: 15 }} md={12} sm={24}>
-          <p style={{ fontSize: 24, fontWeight: "bold" }}>Player One</p>
+          <p className={styles.player}>Player One</p>
           <SearchInput
             getSuccessData={data => setPlayerOneName(data)}
             otherName={playerTwoName}
@@ -73,7 +72,7 @@ function Index() {
         </Col>
 
         <Col style={{ width: "100%", paddingTop: 15 }} md={12} sm={24}>
-          <p style={{ fontSize: 24, fontWeight: "bold" }}>Player Two</p>
+          <p className={styles.player}>Player Two</p>
           <SearchInput
             getSuccessData={data => setPlayerTwoName(data)}
             otherName={playerOneName}

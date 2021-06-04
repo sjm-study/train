@@ -14,7 +14,7 @@ import styles from "./index.less";
 
 const Index = () => {
   const [route, setRoute] = useState({ page: "", param: "" });
-  const [theme, setTheme] = useState("light");
+  // const [theme, setTheme] = useState("light");
 
   const hashchange = () => {
     const R = router();
@@ -29,17 +29,18 @@ const Index = () => {
     return () => window.removeEventListener("hashchange", hashchange);
   }, []);
 
-  const changeTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
+  // const changeTheme = () => {
+  //   if (theme === "light") {
+  //     setTheme("dark");
+  //   } else {
+  //     setTheme("light");
+  //   }
+  // };
 
   return (
     <div
-      className={theme === "light" ? styles.light : styles.dark}
+      // className={theme === "light" ? styles.light : styles.dark}
+      className={styles.dark}
       style={{ padding: "0 15px 0 15px" }}
     >
       <div
@@ -62,7 +63,7 @@ const Index = () => {
             Battle
           </a>
         </div>
-        <button
+        {/* <button
           onClick={changeTheme}
           type="button"
           style={{ backgroundColor: "transparent", borderWidth: 0 }}
@@ -71,10 +72,10 @@ const Index = () => {
             className="fa fa-exchange"
             style={{ fontSize: 25, marginTop: 20 }}
           />
-        </button>
+        </button> */}
       </div>
 
-      {route.page === "" && <PoPular theme={theme} />}
+      {route.page === "" && <PoPular />}
       {route.page === "battle" && (
         <Loading load={() => import("@/page/Battle/index")}>
           {Com => <Com />}

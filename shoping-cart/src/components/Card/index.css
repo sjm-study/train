@@ -1,0 +1,26 @@
+.cardWrapper {
+    padding: 8px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    width: 230px;
+    border: 1px solid rgb(200,200,200);
+    margin-left: 18px;
+    margin-top: 10px;
+}
+
+.cardWrapper .addCradButton {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(58, 58, 58);
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.addCradButton:hover {
+    background-color: #eb1700;
+    color: white;
+}

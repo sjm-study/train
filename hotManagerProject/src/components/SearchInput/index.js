@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import { Input } from 'antd';
+
+
+
 import ClosePng from "@/assents/close.png";
 
 import styles from "./index.less";
 
+const { Search } = Input;
 function Index(props) {
   const [playName, setPlayName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -66,14 +71,16 @@ function Index(props) {
   return (
     <div>
       <div style={{ display: display ? "none" : "flex" }}>
-        <div style={{ width: "100%" }} className={styles.wrapper}>
-          <input
+        <div style={{ width: "95%" }} className={styles.wrapper}>
+          {/* <input
             className={styles.input}
             value={playName}
             onChange={e => changeVaule(e)}
             onKeyDown={e => handleKey(e)}
-          />
-          <button
+          /> 
+          */
+          }
+          {/* <button
             className={styles.button}
             disabled={!(playName.length > 0 && !loading && !error)}
             onClick={submit}
@@ -84,7 +91,19 @@ function Index(props) {
               className="fa fa-spinner fa-spin fa-1x"
               style={{ display: loading ? "inline" : "none" }}
             />
-          </button>
+          </button> 
+          */
+          }
+          <Search
+            placeholder="input Github user"
+            enterButton="Submit"
+            size="large"
+            loading={loading}
+            onChange={e => changeVaule(e)}
+            onKeyDown={e=>handleKey(e)}
+            value={playName}
+            onSearch={submit}
+          />
         </div>
       </div>
       <div
