@@ -47,7 +47,7 @@ const Index = (props) => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                 <div className={styles.menu}>
                     <a
-                        href="#/"
+                        h ref="#/"
                         className={route.page === '' ? styles.active : ''}
                     >PoPular
                 </a>
