@@ -3,7 +3,7 @@ export const composeSubtotal =  (list) => {
     var total = 0
     for (let i = 0; i < list.length; i++) {
         const element = list[i];
-        total = total + element.quantitly * element.price
+        total = total + element.order.quantitly * element.price
     }
     return parseFloat(total).toFixed(2)
 }

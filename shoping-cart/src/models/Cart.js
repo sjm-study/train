@@ -20,9 +20,15 @@ export default {
                 payload: payload
             })
         },
-        *clearCart({payload}, {put}) {
+        *clearCart({ payload }, { put }) {
             yield put({
                 type: 'clear'
+            })
+        },
+        *changeCount({payload}, {put}) {
+            yield put({
+                type:'count',
+                payload: payload
             })
         }
     },
@@ -34,8 +40,8 @@ export default {
             if (p.length > 0) {
                 for (let i = 0; i < p.length; i++) {
                     console.log('进入循环')
-                    if (p[i].id === newGood.id) {
-                        p[i].quantitly++
+                    if (p[i].id === newGood.id && p[i].order.availableSizes === newGood.order.availableSizes) {
+                        p[i].order.quantitly++
                         sutition = true
                         console.log('相等')
                         break
@@ -70,9 +76,21 @@ export default {
             saveCartToLoacl({ ...state, list: [...list], subtotal: composeSubtotal(list) })
             return { ...state, list: [...list], subtotal: composeSubtotal(list) }
         },
-        clear(state, {}) {
+        clear(state, { }) {
             ClearCartToLoacl()
-            return { list:[], subtotal:0}
+            return { list: [], subtotal: 0 }
+        },
+        count(state, {payload}) {
+            var list = state.list
+            for (let i = 0; i < list.length; i++) {
+                const element = list[i];
+                if (element.id === payload.id && element.order.availableSizes === payload.order.availableSizes) {
+                    element.order = payload.order
+                    break
+                }
+            }
+            saveCartToLoacl({...state, list:[...list], subtotal: composeSubtotal(list)})
+            return {...state, list:[...list], subtotal: composeSubtotal(list)}
         }
     }
 }

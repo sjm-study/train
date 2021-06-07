@@ -27,6 +27,12 @@ export default {
                 payload: payload
             })
         },
+        *changeProductCount({ payload }, { put }) {
+            yield put({
+                type: 'productCount',
+                payload: payload
+            })
+        },
         // 默认排序
         *defaultSort({ payload }, { put }) {
             var p = payload.list
@@ -59,6 +65,7 @@ export default {
         deleteProducts(state, { payload }) {
             var list = state
             var p = null
+            var opo = null
             for (let i = 0; i < list.length; i++) {
                 const element = list[i];
                 if (element.id === payload.id) {
@@ -67,8 +74,27 @@ export default {
                 }
             }
             if (p !== null) {
-                list.splice(p, 1)
+                for (let j = 0; j < list[p].quantitly.length; j++) {
+                    const element = list[p].quantitly[j];
+                    if (element.availableSizes === payload.order.availableSizes) {
+                        opo = j
+                        break
+                    }
+                }
             }
+            if (list[p].quantitly[opo].quantitly - payload.order.quantitly <= 0) {
+                var a = 0
+                list[p].quantitly[opo].quantitly = 0
+                list[p].quantitly.forEach(el => {
+                    a = a + el.quantitly
+                });
+                if (a === 0) {
+                    list.splice(p, 1)
+                }
+            } else { // 还有库存
+                list[p].quantitly[opo].quantitly = list[p].quantitly[opo].quantitly - payload.order.quantitly
+            }
+            console.log(payload)
             saveProductToLoacl(list)
             return list
         },
@@ -83,7 +109,49 @@ export default {
         },
         addItemProducts(state, { payload }) {
             var list = state
-            list.push(payload.data)
+            var p = null
+            for (let i = 0; i < list.length; i++) {
+                const element = list[i];
+                if (element.id === payload.data.id) {
+                    p = i
+                    break
+                }
+            }
+            if (p === null) { // 不存在
+                let result = payload.data
+                for (let j = 0; j < result.quantitly.length; j++) {
+                    const element = result.quantitly[j];
+                    if (element.availableSizes === result.order.availableSizes) {
+                        element.quantitly = result.order.quantitly
+                        break
+                    }
+                }
+                result.order = {}
+                list.push(result)
+            } else {
+                for (let j = 0; j < list[p].quantitly.length; j++) {
+                    if (list[p].quantitly[j].availableSizes === payload.data.order.availableSizes) {
+                        console.log('jinlail')
+                        list[p].quantitly[j].quantitly = list[p].quantitly[j].quantitly + payload.data.order.quantitly
+                        break
+                    }
+                }
+                list[p].order = {}
+            }
+            saveProductToLoacl(list)
+            return list
+        },
+        productCount(state, { payload }) {
+            var list = state
+            var p = null
+            for (let i = 0; i < list.length; i++) {
+                const element = list[i];
+                if (element.id === payload.id) {
+                    p = i
+                    break
+                }
+            }
+            list[p] = payload
             saveProductToLoacl(list)
             return list
         }
