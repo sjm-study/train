@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import PoPular from "@/page/Populat";
+// import PoPular from "@/page/Populat";
 import { router } from "@/untils/router";
-import Loading from "@/untils/lazy";
+// import Loading from "@/untils/lazy";
+
+
+import Router from './router/index'
 
 import "lazysizes";
 import "lazysizes/plugins/parent-fit/ls.parent-fit";
@@ -51,14 +54,17 @@ const Index = () => {
         }}
       >
         <div className={styles.menu}>
-          <a href="#/" className={route.page === "" ? styles.active : ""}>
+          <a
+            href="#/popular/select=All"
+            className={route.page.slice(0, 7) === "popular" ? styles.active : ""}
+          >
             PoPular
           </a>
           <a
             href="#/battle"
             className={route.page === "battle" ? styles.active : ""}
-            // onClick={()=>window.location.href='#/battle'}
-            // onKeyDown={()=>window.location.href='#/battle'}
+          // onClick={(e)=>{console.log(history)}}
+          // onKeyDown={()=>window.location.href='#/battle'}
           >
             Battle
           </a>
@@ -75,7 +81,7 @@ const Index = () => {
         </button> */}
       </div>
 
-      {route.page === "" && <PoPular />}
+      {/* {route.page === "" && <PoPular />}
       {route.page === "battle" && (
         <Loading load={() => import("@/page/Battle/index")}>
           {Com => <Com />}
@@ -85,9 +91,11 @@ const Index = () => {
         <Loading load={() => import("@/page/Results/index")}>
           {Com => <Com />}
         </Loading>
-      )}
+      )} */}
+      <Router />
     </div>
   );
 };
+
 
 ReactDOM.render(<Index />, document.getElementById("root"));

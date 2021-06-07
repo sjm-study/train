@@ -70,12 +70,12 @@ function Index() {
 
   const getData = url => {
     setLoading(true);
-    if (window.location.href.split("?select=")[1]) {
+    if (window.location.href.split("/select=")[1]) {
       const arr = select;
       for (let i = 0; i < arr.length; i += 1) {
         if (
           arr[i].name ===
-          window.location.href.split("?select=")[1].split("#")[0]
+          window.location.href.split("/select=")[1]
         ) {
           arr[i].select = true;
         } else {
@@ -171,8 +171,8 @@ function Index() {
       }
     }
     window.addEventListener("scroll", lister);
-    if (window.location.href.split("?select=")[1]) {
-      switch (window.location.href.split("?select=")[1].split("#")[0]) {
+    if (window.location.href.split("/select=")[1]) {
+      switch (window.location.href.split("/select=")[1]) {
         case "All":
           return getData(
             `https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories&page=${page}`
@@ -208,7 +208,7 @@ function Index() {
 
   const changeData = (event, item) => {
     event.preventDefault()
-    const valiable = `${window.location.href.split("?")[0]}?select=${item.name
+    const valiable = `${window.location.href.split("/select")[0]}/select=${item.name
       }`;
     console.log(valiable);
     window.history.pushState({}, 0, valiable);
