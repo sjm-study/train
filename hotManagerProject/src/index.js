@@ -55,7 +55,7 @@ const Index = () => {
       >
         <div className={styles.menu}>
           <a
-            href="#/popular/select=All"
+            h ref="#/popular/select=All"
             className={route.page.slice(0, 7) === "popular" ? styles.active : ""}
           >
             PoPular
