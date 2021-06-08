@@ -61,7 +61,7 @@ const Index = () => {
             PoPular
           </a>
           <a
-            hre2f="#/battle"
+            h ref="#/battle"
             className={route.page === "battle" ? styles.active : ""}
           // onClick={(e)=>{console.log(history)}}
           // onKeyDown={()=>window.location.href='#/battle'}
