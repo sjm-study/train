@@ -7,22 +7,16 @@ export default function Index(props) {
 
     const [input, setInput] = useState(count)
 
-    useEffect(()=> {
+    useEffect(() => {
         setInput(props.count)
     }, [props])
 
     const add = () => {
-        var p = 0
-        for (let i = 0; i < order.quantitly.length; i++) {
-            const element = order.quantitly[i];
-            if (element.availableSizes === order.order.availableSizes) {
-                p = element.quantitly
-                break
-            }
-        }
-        if (p + order.order.quantitly > input) {
+        if (order.total > input) {
             props.addClick(input + 1)
             setInput(pre => pre + 1)
+        } else {
+            props.addClick('false')
         }
     }
 
@@ -30,6 +24,8 @@ export default function Index(props) {
         if (input > 1) {
             props.reduceClick(input - 1)
             setInput(pre => pre - 1)
+        } else {
+            props.reduceClick('false')
         }
     }
 

@@ -1,4 +1,4 @@
-import { saveProductToLoacl } from '../utils/compose'
+import { saveProductToLoacl, sortProductsList } from '../utils/compose'
 export default {
     namespace: 'productList',
     state: localStorage.products ? JSON.parse(localStorage.products) : [],
@@ -29,7 +29,13 @@ export default {
         },
         *changeProductCount({ payload }, { put }) {
             yield put({
-                type: 'productCount',
+                type: 'productCountsss',
+                payload: payload
+            })
+        },
+        *ProductCountToHigh({ payload }, { put }) {
+            yield put({
+                type: 'toheight',
                 payload: payload
             })
         },
@@ -65,7 +71,6 @@ export default {
         deleteProducts(state, { payload }) {
             var list = state
             var p = null
-            var opo = null
             for (let i = 0; i < list.length; i++) {
                 const element = list[i];
                 if (element.id === payload.id) {
@@ -73,87 +78,149 @@ export default {
                     break
                 }
             }
-            if (p !== null) {
-                for (let j = 0; j < list[p].quantitly.length; j++) {
-                    const element = list[p].quantitly[j];
-                    if (element.availableSizes === payload.order.availableSizes) {
-                        opo = j
-                        break
-                    }
+            for (let j = 0; j < list[p].quantitly.length; j++) { // 更新库存
+                const a = list[p].quantitly[j];
+                if (a.availableSizes === payload.order.availableSizes) {
+                    a.quantitly = a.quantitly - payload.order.quantitly
+                    break
                 }
             }
-            if (list[p].quantitly[opo].quantitly - payload.order.quantitly <= 0) {
-                var a = 0
-                list[p].quantitly[opo].quantitly = 0
-                list[p].quantitly.forEach(el => {
-                    a = a + el.quantitly
-                });
-                if (a === 0) {
-                    list.splice(p, 1)
-                }
-            } else { // 还有库存
-                list[p].quantitly[opo].quantitly = list[p].quantitly[opo].quantitly - payload.order.quantitly
+
+            // 判读是否删除这个商品
+            var rep = 0
+            for (let j = 0; j < list[p].quantitly.length; j++) {
+                const element = list[p].quantitly[j];
+                rep = rep + element.quantitly
             }
-            console.log(payload)
-            saveProductToLoacl(list)
-            return list
+            if (rep <= 0) { // 删除这个商品
+                list.splice(p, 1)
+            }
+            saveProductToLoacl(sortProductsList(list))
+            return sortProductsList(list)
         },
         addProducts(state, { payload }) {
             saveProductToLoacl(payload.list)
-            return payload.list
+            return sortProductsList(payload.list)
         },
         updateProducts(state, { payload }) {
             // saveProductToLoacl(payload.list)
-            console.log(payload)
-            return payload.list
+            return sortProductsList(payload.list)
         },
         addItemProducts(state, { payload }) {
             var list = state
             var p = null
             for (let i = 0; i < list.length; i++) {
                 const element = list[i];
-                if (element.id === payload.data.id) {
-                    p = i
-                    break
-                }
-            }
-            if (p === null) { // 不存在
-                let result = payload.data
-                for (let j = 0; j < result.quantitly.length; j++) {
-                    const element = result.quantitly[j];
-                    if (element.availableSizes === result.order.availableSizes) {
-                        element.quantitly = result.order.quantitly
-                        break
-                    }
-                }
-                result.order = {}
-                list.push(result)
-            } else {
-                for (let j = 0; j < list[p].quantitly.length; j++) {
-                    if (list[p].quantitly[j].availableSizes === payload.data.order.availableSizes) {
-                        console.log('jinlail')
-                        list[p].quantitly[j].quantitly = list[p].quantitly[j].quantitly + payload.data.order.quantitly
-                        break
-                    }
-                }
-                list[p].order = {}
-            }
-            saveProductToLoacl(list)
-            return list
-        },
-        productCount(state, { payload }) {
-            var list = state
-            var p = null
-            for (let i = 0; i < list.length; i++) {
-                const element = list[i];
                 if (element.id === payload.id) {
                     p = i
                     break
                 }
             }
-            list[p] = payload
-            saveProductToLoacl(list)
-            return list
+            if (p === null) { // 无此商品，新增
+                // var data = payload
+                // data.quantitly = [
+                //     {
+                //         quantitly: data.order.quantitly,
+                //         availableSizes: data.order.availableSizes
+                //     }
+                // ]
+                // delete data.order
+
+                var data = payload
+                data.quantitly = []
+                data.availableSizes.forEach(el => {
+                    data.quantitly.push({
+                        availableSizes: el,
+                        quantitly: 0
+                    })
+                })
+                for (let k = 0; k < data.quantitly.length; k++) {
+                    if (data.order.availableSizes === data.quantitly[k].availableSizes) {
+                        data.quantitly[k].quantitly = data.total
+                        break
+                    }
+                }
+                list.push(data)
+
+            } else { // 有此商品
+                for (let j = 0; j < list[p].quantitly.length; j++) {
+                    const b = list[p].quantitly[j];
+                    if (b.availableSizes === payload.order.availableSizes) {
+                        b.quantitly = b.quantitly + payload.order.quantitly
+                        break
+                    }
+                }
+
+            }
+            saveProductToLoacl(sortProductsList(list))
+            return sortProductsList(list)
+        },
+        productCountsss(state, { payload }) {
+            var list = state
+            var p = null
+            for (let i = 0; i < list.length; i++) {
+                if (list[i].id === payload.id) {
+                    p = i
+                    break
+                }
+            }
+            if (p !== null) {
+                for (let j = 0; j < list[p].quantitly.length; j++) {
+                    let a = list[p].quantitly[j];
+                    if (a.availableSizes === payload.order.availableSizes) {
+                        a.quantitly = payload.total - payload.order.quantitly
+                        break
+                    }
+                }
+
+                var rep = 0
+                for (let j = 0; j < list[p].quantitly.length; j++) {
+                    rep = rep + list[p].quantitly[j].quantitly
+                }
+                if (rep <= 0) { // 删除这个商品
+                    list.splice(p, 1)
+                }
+            } else {
+                var data = payload
+                data.quantitly = []
+                data.availableSizes.forEach(el => {
+                    data.quantitly.push({
+                        availableSizes: el,
+                        quantitly: 0
+                    })
+                })
+                for (let k = 0; k < data.quantitly.length; k++) {
+                    if (data.order.availableSizes === data.quantitly[k].availableSizes) {
+                        data.quantitly[k].quantitly = data.total - data.order.quantitly
+                        break
+                    }
+                }
+                list.push(data)
+            }
+
+
+            saveProductToLoacl(sortProductsList(list))
+            return sortProductsList(list)
+        },
+        toheight(state, { payload }) {
+            var list = state
+            var p = null
+            for (let i = 0; i < list.length; i++) {
+                if (list[i].id === payload.id) {
+                    p = i
+                    break
+                }
+            }
+            console.log(list[p])
+            var rep = 0
+            for (let j = 0; j < list[p].quantitly.length; j++) {
+                rep = rep + list[p].quantitly[j].quantitly
+            }
+            if (rep <= 0) { // 删除这个商品
+                list.splice(p, 1)
+            }
+            saveProductToLoacl(sortProductsList(list))
+            return sortProductsList(list)
         }
     }
 }

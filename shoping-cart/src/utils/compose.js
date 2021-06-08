@@ -1,11 +1,16 @@
 // 计算subtotal
-export const composeSubtotal =  (list) => {
+export const composeSubtotal = (list) => {
     var total = 0
     for (let i = 0; i < list.length; i++) {
         const element = list[i];
         total = total + element.order.quantitly * element.price
     }
     return parseFloat(total).toFixed(2)
+}
+
+// 排序 id
+export const sortProductsList = (list) => {
+    return list.sort((a, b) => { return a.id - b.id })
 }
 
 // 保存购物车至本地

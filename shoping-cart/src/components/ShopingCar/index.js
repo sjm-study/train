@@ -6,7 +6,7 @@ function Index(props) {
 
     return (
         <span style={{ position: 'relative' }} >
-            <img src={ShopingCarPng} style={{ width: 40, height: 40 }} />
+            <img src={ShopingCarPng} style={{ width: 40, height: 40 }} alt={'img'} />
             <div style={{
                 display:props.cart.list.length>0? 'flex': 'none', justifyContent: 'center', alignItems: 'center',
                 borderRadius: 10000, backgroundColor: 'yellow', width: 28, height: 28,

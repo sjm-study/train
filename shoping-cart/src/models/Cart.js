@@ -25,9 +25,9 @@ export default {
                 type: 'clear'
             })
         },
-        *changeCount({payload}, {put}) {
+        *changeCount({ payload }, { put }) {
             yield put({
-                type:'count',
+                type: 'count',
                 payload: payload
             })
         }
@@ -36,25 +36,41 @@ export default {
         addCarts(state, { payload }) {
             var p = state.list
             var newGood = JSON.parse(JSON.stringify(payload.data))
-            var sutition = false
-            if (p.length > 0) {
+            // var sutition = false
+            if (p.length <= 0) { // 新建商品
+                p.push(newGood)
+            } else {
+                var lol = []
+                var TTT = false
                 for (let i = 0; i < p.length; i++) {
-                    console.log('进入循环')
-                    if (p[i].id === newGood.id && p[i].order.availableSizes === newGood.order.availableSizes) {
-                        p[i].order.quantitly++
-                        sutition = true
-                        console.log('相等')
-                        break
+                    const element = p[i];
+                    if (element.id === newGood.id) { // 有相同的物品id 增加数量
+                        lol.push(i)
                     }
                 }
-                if (!sutition) {
+                if (lol.length > 0) {
+                    // for (let z = 0; z < p[lol].quantitly.length; z++) {
+                    //     if (p[lol].quantitly[z].availableSizes === newGood.order.availableSizes) {
+                    //         p[lol].quantitly[z].quantitly = p[lol].quantitly[z].quantitly + newGood.order.quantitly
+                    //         sutition = true
+                    //     }
+
+                    // }
+                    for (let w = 0; w < lol.length; w++) {
+                        if (p[lol[w]].order.availableSizes === newGood.order.availableSizes) {
+                            p[lol[w]].order.quantitly = p[lol[w]].order.quantitly + newGood.order.quantitly
+                            TTT = true
+                            break
+                        }
+
+                    }
+                    if (!TTT) { // 新建物品
+                        p.push(newGood)
+                    }
+                } else {
                     p.push(newGood)
                 }
-            } else {
-                console.log('第一次')
-                p.push(newGood)
             }
-            console.log(p)
             saveCartToLoacl({ ...state, list: [...p], subtotal: composeSubtotal(p) })
             return { ...state, list: [...p], subtotal: composeSubtotal(p) }
         },
@@ -63,7 +79,7 @@ export default {
             var p = null
             for (let i = 0; i < list.length; i++) {
                 const element = list[i];
-                if (payload.id === element.id) {
+                if (payload.id === element.id && element.order.availableSizes === payload.order.availableSizes) {
                     p = i
                     break
                 }
@@ -71,26 +87,24 @@ export default {
             if (p !== null) {
                 list.splice(p, 1)
             }
-            console.log(payload.id)
-            console.log(p)
             saveCartToLoacl({ ...state, list: [...list], subtotal: composeSubtotal(list) })
             return { ...state, list: [...list], subtotal: composeSubtotal(list) }
         },
-        clear(state, { }) {
+        clear() {
             ClearCartToLoacl()
             return { list: [], subtotal: 0 }
         },
-        count(state, {payload}) {
+        count(state, { payload }) {
             var list = state.list
             for (let i = 0; i < list.length; i++) {
                 const element = list[i];
                 if (element.id === payload.id && element.order.availableSizes === payload.order.availableSizes) {
-                    element.order = payload.order
+                    element.order.quantitly = payload.order.quantitly
                     break
                 }
             }
-            saveCartToLoacl({...state, list:[...list], subtotal: composeSubtotal(list)})
-            return {...state, list:[...list], subtotal: composeSubtotal(list)}
+            saveCartToLoacl({ ...state, list: [...list], subtotal: composeSubtotal(list) })
+            return { ...state, list: [...list], subtotal: composeSubtotal(list) }
         }
     }
 }

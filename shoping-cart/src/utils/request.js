@@ -1,5 +1,4 @@
 import fetch from 'dva/fetch';
-import axios from 'axios'
 
 function parseJSON(response) {
   return response.json();
@@ -31,5 +30,5 @@ function checkStatus(response) {
 // }
 
 export default function request(url, options) {
-    return axios(url,{...options})
+    return fetch(url,{...options})
 }

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, Drawer, Select, message, Modal } from 'antd';
 import Card from '../components/Card/index'
 // import axios from 'axios'
-import request from '../utils/request'
 import ShopingCar from '../components/ShopingCar/index'
 import ListCard from '../components/ListCard/index'
 import { LoadingOutlined } from '@ant-design/icons'
@@ -46,9 +45,9 @@ function App(props) {
     },
   ])
 
-  const [goodList, setGoodList] = useState([])
+  // const [goodList, setGoodList] = useState([])
   const [visible, setVisible] = useState(false)
-  const [temList, setTemList] = useState([])
+  // const [temList, setTemList] = useState([])
   const [selectValue, setSelectValue] = useState('')
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false)
@@ -56,7 +55,7 @@ function App(props) {
   useEffect(() => {
     if (productList.length === 0) {
       console.log('123132')
-     console.log(getData())
+      console.log(getData())
       getData().then(async res => {
         await dispatch({
           type: 'productList/addProduct',
@@ -64,7 +63,7 @@ function App(props) {
             list: res.data.products
           }
         })
-        setGoodList(res.data.products)
+        // setGoodList(res.data.products)
         // setTemList(res.data.products)
         setLoading(false)
       }).catch(error => {
@@ -92,7 +91,7 @@ function App(props) {
               list: p
             }
           })
-          setGoodList([...productList])
+          // setGoodList([...productList])
         }, 1000);
 
         break;
@@ -106,7 +105,7 @@ function App(props) {
               list: p
             }
           })
-          setGoodList([...productList])
+          // setGoodList([...productList])
         }, 1000);
         break;
 
@@ -119,7 +118,7 @@ function App(props) {
               list: p
             }
           })
-          setGoodList([...productList])
+          // setGoodList([...productList])
         }, 1000);
         break;
 
@@ -186,35 +185,40 @@ function App(props) {
           </div>
         </Col>
 
-        <Col sm={20}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 25 }} >
-            <span>{productList.length} Product(s) found</span>
-            <div>
-              <span style={{ fontSize: 15 }} >Order by &nbsp;&nbsp;</span>
-              <Select defaultValue="" style={{ width: 120 }} onChange={(value) => changeprice(value, productList)}>
-                <Option value="moren">默认</Option>
-                <Option value="hight">价格高到低</Option>
-                <Option value="low">价格低到高</Option>
-              </Select>
+        <Col sm={20} >
+          <div style={{ position: 'relative', width: '100%' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 25 }} >
+              <span>{productList.length} Product(s) found</span>
+              <div>
+                <span style={{ fontSize: 15 }} >Order by &nbsp;&nbsp;</span>
+                <Select defaultValue="" style={{ width: 120 }} onChange={(value) => changeprice(value, productList)}>
+                  <Option value="moren">默认</Option>
+                  <Option value="hight">价格高到低</Option>
+                  <Option value="low">价格低到高</Option>
+                </Select>
+              </div>
             </div>
+            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
+              {
+                productList.map((item, index) => {
+                  return (
+                    <Card goods={item} key={index} />
+                  )
+                })
+              }
+            </div>
+
+            <div style={{ position: 'fixed', top: '50%', display: loading ? 'flex' : 'none', justifyContent: 'center', width: '100%',left:'5.5%' }} >
+              <div style={{ backgroundColor: '#6d6c6c', width: 100, height: 100,display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }} >
+                <LoadingOutlined style={{ fontSize: 50, textAlign: 'center', display: 'block', color: 'white' }} />
+              </div>
+            </div>
+
           </div>
-          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
-            {
-              productList.map((item, index) => {
-                return (
-                  <Card goods={item} key={index} />
-                )
-              })
-            }
-          </div>
+
+
         </Col>
       </Row>
-      <div style={{ position: 'absolute', top: '50%', margin: '0 auto', width: '100%', display: loading ? 'block' : 'none' }} >
-        <div style={{ backgroundColor: '#6d6c6c', width: 100, height: 100, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }} >
-          <LoadingOutlined style={{ fontSize: 50, textAlign: 'center', display: 'block', color: 'white' }} />
-        </div>
-
-      </div>
 
       <Drawer
         title="Shoping Card"
@@ -247,7 +251,7 @@ function App(props) {
               <a style={{
                 width: '100%', textAlign: 'center', display: 'block', paddingTop: 10, paddingBottom: 10,
                 fontSize: 18, marginTop: 20, borderRadius: 6
-              }} className={style.checktOUTButton} onClick={()=>setIsModalVisible(true)}>
+              }} className={style.checktOUTButton} onClick={() => setIsModalVisible(true)}>
                 CHECKOUT
           </a>
             </div>

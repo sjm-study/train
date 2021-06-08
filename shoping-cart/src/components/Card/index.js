@@ -33,12 +33,12 @@ function Index(props) {
                 }
                 results.push(p)
             } else {
-                var p = {
+                var pp = {
                     value: el.availableSizes,
                     label: el.availableSizes,
                     disabled: false
                 }
-                results.push(p)
+                results.push(pp)
             }
         })
         setSizeList(results)
@@ -47,24 +47,28 @@ function Index(props) {
     const addCart = async () => {
         if (count && size.length > 0) {
             var data = goods
-            // if (data.order) {
-            //     data.order.availableSizes = size
-            //     data.order.quantitly = data.order.quantitly + count
-            // } else {
-                data.order = {
-                    availableSizes: size,
-                    quantitly: count
-                }
-            // }
-
+            data.order = {
+                availableSizes: size,
+                quantitly: count
+            }
             await dispatch({
                 type: 'productList/deleteProduct',
                 payload: data
             })
+            for (let i = 0; i < data.quantitly.length; i++) {
+                const element = data.quantitly[i];
+                if (element.availableSizes === size) {
+                    data.total = data.quantitly[i].quantitly + count
+                }
+            }
+            console.log('data')
+            console.log(data)
+            // delete data.quantitly
             await dispatch({
                 type: 'cart/addCart',
                 payload: data
             })
+
             setIsModalVisible(false)
 
         } else {
@@ -89,15 +93,25 @@ function Index(props) {
     const showModal = () => {
         var list = goods.quantitly
         setTotal(list[0].quantitly)
-        if (list[0].quantitly === 0) {
-            var arr = sizeList
-            arr[0].disabled = true
-            setSizeList([...arr])
-        } else {
-            var arr = sizeList
-            arr[0].disabled = false
-            setSizeList([...arr])
-        }
+        var results = []
+        goods.quantitly.forEach(el => {
+            if (el.quantitly === 0) {
+                var p = {
+                    value: el.availableSizes,
+                    label: el.availableSizes,
+                    disabled: true
+                }
+                results.push(p)
+            } else {
+                var pp = {
+                    value: el.availableSizes,
+                    label: el.availableSizes,
+                    disabled: false
+                }
+                results.push(pp)
+            }
+        })
+        setSizeList(results)
         setSize(list[0].availableSizes)
         setIsModalVisible(true)
     }
@@ -106,7 +120,7 @@ function Index(props) {
     return (
         <div className={styles.cardWrapper} >
             {/* <img src={changeImgUrl().default} style={{ width: 220}} /> */}
-            <img src={require(`../../assets/img/${goods.sku}_1.jpg`)} style={{ width: 220 }} />
+            <img src={require(`../../assets/img/${goods.sku}_1.jpg`)} style={{ width: 220 }} alt={'img'} />
             <p style={{ marginTop: 10, fontSize: 15, height: 46, textAlign: 'center', marginBottom: 0 }} >{goods.title}</p>
             <div style={{ width: 30, height: 2, backgroundColor: 'rgb(240, 211, 98)' }} ></div>
             <span style={{ fontSize: 14 }}>{goods.currencyFormat}

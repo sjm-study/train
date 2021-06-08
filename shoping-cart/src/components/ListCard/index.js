@@ -3,85 +3,81 @@ import { CloseOutlined } from '@ant-design/icons'
 import { connect } from 'dva'
 import CountInput from '../CountInput/index'
 function Index(props) {
-    const { data, dispatch, productList } = props
+    const { data, dispatch } = props
 
     const deleteClick = () => {
         dispatch({
             type: 'cart/deleteCart',
-            payload: {
-                id: data.id
-            }
+            payload: data
         })
         dispatch({
             type: 'productList/addProductItem',
-            payload: {
-                data: data
-            }
+            payload: data
         })
     }
 
-    const addItem = (count) => {
-        var p = data
-        p.order.quantitly++
-        for (let i = 0; i < p.quantitly.length; i++) {
-            const element = p.quantitly[i];
-            if (element.availableSizes === p.order.availableSizes) {
-                element.quantitly = element.quantitly - 1
-            }
+    const addItem = async (count) => {
+        if (count === 'false') {
+            // var p = data
+            // p.order.quantitly++
+            // console.log('到高了')
+            // await dispatch({
+            //     type: 'productList/ProductCountToHigh',
+            //     payload: p
+            // })
+        } else {
+            var p = data
+            p.order.quantitly++
+            await dispatch({
+                type: 'cart/changeCount',
+                payload: p
+            })
+            // var array = productList
+            // for (let j = 0; j < array.length; j++) {
+            //     const element = array[j];
+            //     if (element.id === p.id) {
+            //         element.quantitly = p.quantitly
+            //         break
+            //     }
+            // }
+            await dispatch({
+                type: 'productList/changeProductCount',
+                payload: p
+            })
+
         }
-        console.log('ppp')
-        console.log(p)
-        dispatch({
-            type: 'cart/changeCount',
-            payload: p
-        })
-        var array = productList
-        for (let j = 0; j < array.length; j++) {
-            const element = array[j];
-            if (element.id === p.id) {
-                element.quantitly = p.quantitly
-                break
-            }
-        }
-        dispatch({
-            type: 'productList/changeProductCount',
-            payload: p
-        })
     }
 
     const reduceItem = (count) => {
-        var p = data
-        p.order.quantitly--
-        for (let i = 0; i < p.quantitly.length; i++) {
-            const element = p.quantitly[i];
-            if (element.availableSizes === p.order.availableSizes) {
-                element.quantitly = element.quantitly + 1
-            }
+        if (count === 'false') {
+
+        } else {
+            var p = data
+            p.order.quantitly--
+            dispatch({
+                type: 'cart/changeCount',
+                payload: p
+            })
+            // var array = productList
+            // for (let j = 0; j < array.length; j++) {
+            //     const element = array[j];
+            //     if (element.id === p.id) {
+            //         element.quantitly = p.quantitly
+            //         break
+            //     }
+            // }
+            dispatch({
+                type: 'productList/changeProductCount',
+                payload: p
+            })
+
         }
-        dispatch({
-            type: 'cart/changeCount',
-            payload: p
-        })
-        var array = productList
-        for (let j = 0; j < array.length; j++) {
-            const element = array[j];
-            if (element.id === p.id) {
-                element.quantitly = p.quantitly
-                break
-            }
-        }
-        dispatch({
-            type: 'productList/changeProductCount',
-            payload: {
-                list: array
-            }
-        })
     }
 
     return (
         <div style={{ display: 'flex', borderTop: '1px solid rgb(200,200,200)', padding: 8 }} >
             <div>
-                <img src={require(`../../assets/img/${data.sku}_2.jpg`)} style={{ width: 100 }} />
+                <img src={require(`../../assets/img/${data.sku}_2.jpg`)} style={{ width: 100 }} alt={'img'} />
             </div>
             <div style={{ marginLeft: 10 }} >
                 <div >
