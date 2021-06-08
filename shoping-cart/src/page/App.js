@@ -50,6 +50,7 @@ function App(props) {
   // const [temList, setTemList] = useState([])
   const [selectValue, setSelectValue] = useState('')
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -264,14 +265,21 @@ function App(props) {
 
       </Drawer>
 
-      <Modal title="CheckOut" visible={isModalVisible} onOk={() => {
-        dispatch({
+      <Modal title="CheckOut" visible={isModalVisible} onOk={async () => {
+        await dispatch({
           type: 'cart/clearCart'
         })
         setIsModalVisible(false)
+        setModalVisible(true)
       }} onCancel={() => { setIsModalVisible(false) }} centered>
         <p style={{ fontWeight: 'bold', fontSize: 18 }} >Are you sure to checkout your orders?</p>
         <p style={{ fontWeight: 'bold', fontSize: 18 }} >Subtotal: ${props.cart.subtotal}</p>
+      </Modal>
+
+      <Modal title="Success" visible={modalVisible} onOk={() => {
+        setModalVisible(false)
+      }} onCancel={() => { setModalVisible(false) }} centered>
+        <p style={{ fontWeight: 'bold', fontSize: 18 }} >CheckOut Successfully!</p>
       </Modal>
 
     </div>
