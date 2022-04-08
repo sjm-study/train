@@ -36,7 +36,7 @@ function Index() {
           />
         </Col>
         <Col className={styles.small} md={8} sm={12} xs={8}>
-          <span>Battle:</span>
+          <span>Battle1:</span>
           <i
             className="fa fa-fighter-jet"
             style={{
