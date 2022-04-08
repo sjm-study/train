@@ -96,15 +96,15 @@ export default {
                 list.splice(p, 1)
             }
             saveProductToLoacl(sortProductsList(list))
-            return sortProductsList(list)
+            return list
         },
         addProducts(state, { payload }) {
             saveProductToLoacl(payload.list)
-            return sortProductsList(payload.list)
+            return payload.list
         },
         updateProducts(state, { payload }) {
             // saveProductToLoacl(payload.list)
-            return sortProductsList(payload.list)
+            return payload.list
         },
         addItemProducts(state, { payload }) {
             var list = state
@@ -153,7 +153,7 @@ export default {
 
             }
             saveProductToLoacl(sortProductsList(list))
-            return sortProductsList(list)
+            return list
         },
         productCountsss(state, { payload }) {
             var list = state
@@ -200,7 +200,7 @@ export default {
 
 
             saveProductToLoacl(sortProductsList(list))
-            return sortProductsList(list)
+            return list
         },
         toheight(state, { payload }) {
             var list = state
@@ -220,7 +220,7 @@ export default {
                 list.splice(p, 1)
             }
             saveProductToLoacl(sortProductsList(list))
-            return sortProductsList(list)
+            return list
         }
     }
 }

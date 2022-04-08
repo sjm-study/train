@@ -39,6 +39,7 @@ const Index = () => {
   //     setTheme("light");
   //   }
   // };
+  console.log(process.env)
 
   return (
     <div
@@ -61,7 +62,7 @@ const Index = () => {
             PoPular
           </a>
           <a
-            h263ref="#/battle"
+            href="#/battle"
             className={route.page === "battle" ? styles.active : ""}
           // onClick={(e)=>{console.log(history)}}
           // onKeyDown={()=>window.location.href='#/battle'}

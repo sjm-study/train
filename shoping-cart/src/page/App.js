@@ -9,6 +9,8 @@ import { connect } from 'dva'
 import style from './App.css'
 import getData from '../services/production'
 
+import DiffComponent from './diff';
+
 const { Option } = Select;
 
 function App(props) {
@@ -85,13 +87,13 @@ function App(props) {
       case 'moren':
       case '':
         setTimeout(async () => {
-          setLoading(false)
           await dispatch({
             type: 'productList/defaultSort',
             payload: {
               list: p
             }
           })
+          setLoading(false)
           // setGoodList([...productList])
         }, 1000);
 
@@ -99,26 +101,28 @@ function App(props) {
 
       case 'hight':
         setTimeout(async () => {
-          setLoading(false)
+          // setLoading(false)
           await dispatch({
             type: 'productList/hightSort',
             payload: {
               list: p
             }
           })
+          setLoading(false)
           // setGoodList([...productList])
         }, 1000);
         break;
 
       case 'low':
         setTimeout(async () => {
-          setLoading(false)
+          // setLoading(false)
           await dispatch({
             type: 'productList/lowSort',
             payload: {
               list: p
             }
           })
+          setLoading(false)
           // setGoodList([...productList])
         }, 1000);
         break;
@@ -154,6 +158,8 @@ function App(props) {
     setSizeList([...arr])
   }
 
+  console.log(process.env)
+
 
   return (
     <div className={style.App}>
@@ -165,6 +171,7 @@ function App(props) {
 
       </div>
 
+      <DiffComponent />
 
       <Row>
         {/* left */}
@@ -209,8 +216,8 @@ function App(props) {
               }
             </div>
 
-            <div style={{ position: 'fixed', top: '50%', display: loading ? 'flex' : 'none', justifyContent: 'center', width: '100%',left:'5.5%' }} >
-              <div style={{ backgroundColor: '#6d6c6c', width: 100, height: 100,display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }} >
+            <div style={{ position: 'fixed', top: '50%', display: loading ? 'flex' : 'none', justifyContent: 'center', width: '100%', left: '5.5%' }} >
+              <div style={{ backgroundColor: '#6d6c6c', width: 100, height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }} >
                 <LoadingOutlined style={{ fontSize: 50, textAlign: 'center', display: 'block', color: 'white' }} />
               </div>
             </div>
@@ -254,7 +261,7 @@ function App(props) {
                 fontSize: 18, marginTop: 20, borderRadius: 6
               }} className={style.checktOUTButton} onClick={() => setIsModalVisible(true)}>
                 CHECKOUT
-          </a>
+              </a>
             </div>
             :
             <div style={{ paddingLeft: 5, paddingRight: 5, flex: 1 }}>
